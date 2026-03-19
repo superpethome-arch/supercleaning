@@ -6,6 +6,8 @@
   <title>Super Cleaning CC | Professional Cleaning Services in Cape Cod, MA</title>
   <meta name="description" content="Cape Cod's most trusted cleaning service. Over 20 years of experience in residential, vacation home, and Airbnb cleaning. Serving Falmouth, Barnstable County and all of Cape Cod." />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -257,26 +259,31 @@
     .season-card p { color: rgba(255,255,255,.65); font-size: 13px; line-height: 1.65; }
 
     /* GALLERY */
-    .gallery-section { background: var(--near-black); padding: 0; overflow: hidden; }
-    .gallery-scroll-driver { height: auto; position: relative; }
-    .gallery-sticky { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-    .gallery-header { text-align: center; position: absolute; top: 60px; z-index: 10; }
+    /* SWIPER GALLERY */
+    .gallery-section { background: var(--near-black); padding: 88px 0; overflow: hidden; position: relative; }
+    .gallery-header { text-align: center; margin-bottom: 52px; position: relative; z-index: 5; }
     .gallery-header .section-label { justify-content: center; color: #FF9099; }
     .gallery-header .section-label::before { display: none; }
     .gallery-header .section-label::after { content: ''; width: 20px; height: 2px; background: var(--red); }
     .gallery-header h2 { color: white; font-size: clamp(22px,3vw,36px); font-weight: 800; margin-top: 8px; }
-    .gallery-3d-wrap { width: 100%; height: 100%; perspective: 2000px; display: flex; align-items: center; justify-content: center; }
-    .gallery-rotator { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
-    .gallery-card { position: absolute; width: 260px; height: 340px; left: 50%; top: 50%; margin-left: -130px; margin-top: -170px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: var(--dark-nav); box-shadow: 0 20px 60px rgba(0,0,0,.5); transition: opacity .3s linear; }
-    .gallery-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(145deg, #3F444B, #2a2d31); position: relative; overflow: hidden; }
-    .gallery-card-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-card-placeholder { font-size: 56px; margin-bottom: 12px; opacity: .45; position: relative; z-index: 1; }
-    .gallery-card-label { color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; position: relative; z-index: 1; }
-    .gallery-card-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); color: white; }
-    .gallery-card-footer strong { font-size: 15px; display: block; }
-    .gallery-card-footer span { font-size: 12px; color: rgba(255,255,255,.6); }
-    .gallery-scroll-hint { position: absolute; bottom: 32px; color: rgba(255,255,255,.45); font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; animation: bounce 2s ease infinite; }
-    @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    /* Color sweep blob */
+    .gallery-blob { pointer-events: none; width: 520px; height: 520px; border-radius: 50%; position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); background: var(--red); filter: blur(110px); opacity: .28; z-index: 1; animation: blobSweep 6s ease-in-out infinite alternate; }
+    @keyframes blobSweep { 0% { left: 10%; } 100% { left: 90%; } }
+    /* Swiper overrides */
+    .gallery-swiper { width: 100%; padding: 20px 0 48px !important; position: relative; z-index: 3; }
+    .gallery-swiper .swiper-wrapper { transition-timing-function: linear !important; align-items: center; }
+    .gallery-swiper .swiper-slide { width: 300px !important; border-radius: 16px; overflow: hidden; opacity: 0.35; filter: blur(6px); transition: opacity .5s ease, filter .5s ease, transform .5s ease; transform: scale(.92); }
+    .gallery-swiper .swiper-slide-active,
+    .gallery-swiper .swiper-slide-prev,
+    .gallery-swiper .swiper-slide-next { opacity: 1; filter: blur(0); transform: scale(1); }
+    .gallery-swiper .swiper-slide-active { transform: scale(1.06); }
+    .gallery-slide-img { width: 300px; height: 380px; object-fit: cover; display: block; }
+    .gallery-slide-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 16px 16px; background: linear-gradient(to top, rgba(0,0,0,.85), transparent); color: white; }
+    .gallery-slide-caption strong { font-size: 15px; display: block; font-weight: 700; }
+    .gallery-slide-caption span { font-size: 12px; color: rgba(255,255,255,.6); }
+    /* Swiper pagination bullets */
+    .gallery-swiper .swiper-pagination-bullet { background: rgba(255,255,255,.35); opacity: 1; }
+    .gallery-swiper .swiper-pagination-bullet-active { background: var(--red); }
 
     /* TESTIMONIALS MARQUEE */
     .testimonials { background: var(--off-white); }
@@ -625,24 +632,39 @@
 
   <!-- GALLERY -->
   <section class="gallery-section" id="gallery">
-    <div class="gallery-scroll-driver" id="galleryDriver">
-      <div class="gallery-sticky">
-        <div class="gallery-header">
-          <div class="section-label">Our Work</div>
-          <h2>A Closer Look at What We Do</h2>
+    <div class="gallery-blob"></div>
+    <div class="gallery-header">
+      <div class="section-label">Our Work</div>
+      <h2>A Closer Look at What We Do</h2>
+    </div>
+    <div class="swiper gallery-swiper" id="gallerySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="1.jpg" alt="Home Cleaning">
+          <div class="gallery-slide-caption"><strong>Home Cleaning</strong><span>Falmouth, MA</span></div>
         </div>
-        <div class="gallery-3d-wrap">
-          <div class="gallery-rotator" id="galleryRotator">
-            <div class="gallery-card" data-index="0"><div class="gallery-card-inner"><img src="1.jpg" alt="Home Cleaning"></div><div class="gallery-card-footer"><strong>Home Cleaning</strong><span>Falmouth, MA</span></div></div>
-            <div class="gallery-card" data-index="1"><div class="gallery-card-inner"><img src="2.jpg" alt="Airbnb Turnover"></div><div class="gallery-card-footer"><strong>Airbnb Turnover</strong><span>Barnstable, MA</span></div></div>
-            <div class="gallery-card" data-index="2"><div class="gallery-card-inner"><img src="3.jpg" alt="Deep Clean"></div><div class="gallery-card-footer"><strong>Before &amp; After</strong><span>Sandwich, MA</span></div></div>
-            <div class="gallery-card" data-index="3"><div class="gallery-card-inner"><img src="4.jpg" alt="Spring Opening"></div><div class="gallery-card-footer"><strong>Spring Opening</strong><span>Mashpee, MA</span></div></div>
-            <div class="gallery-card" data-index="4"><div class="gallery-card-inner"><img src="5.png" alt="Commercial Cleaning"></div><div class="gallery-card-footer"><strong>Office Cleaning</strong><span>Bourne, MA</span></div></div>
-            <div class="gallery-card" data-index="5"><div class="gallery-card-inner"><div class="gallery-card-placeholder">⚡</div><div class="gallery-card-label">Emergency</div></div><div class="gallery-card-footer"><strong>Same-Day Clean</strong><span>North Falmouth, MA</span></div></div>
-          </div>
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="2.jpg" alt="Airbnb Turnover">
+          <div class="gallery-slide-caption"><strong>Airbnb Turnover</strong><span>Barnstable, MA</span></div>
         </div>
-        <div class="gallery-scroll-hint">↓ Scroll to explore</div>
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="3.jpg" alt="Deep Clean">
+          <div class="gallery-slide-caption"><strong>Before &amp; After</strong><span>Sandwich, MA</span></div>
+        </div>
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="4.jpg" alt="Spring Opening">
+          <div class="gallery-slide-caption"><strong>Spring Opening</strong><span>Mashpee, MA</span></div>
+        </div>
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="5.png" alt="Office Cleaning">
+          <div class="gallery-slide-caption"><strong>Office Cleaning</strong><span>Bourne, MA</span></div>
+        </div>
+        <div class="swiper-slide" style="position:relative;">
+          <img class="gallery-slide-img" src="7.jpeg" alt="Our Team">
+          <div class="gallery-slide-caption"><strong>Our Team</strong><span>Cape Cod, MA</span></div>
+        </div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
@@ -874,29 +896,16 @@
       btn.disabled = true;
     }
 
-    // CIRCULAR GALLERY
-    const rotator = document.getElementById('galleryRotator');
-    const driver = document.getElementById('galleryDriver');
-    const cards = rotator ? rotator.querySelectorAll('.gallery-card') : [];
-    const RADIUS = 520, N = cards.length, ANGLE_EACH = 360 / N;
-    let autoAngle = 0, isScrollingGallery = false, scrollTimer;
-    cards.forEach((card, i) => { card.style.transform = `rotateY(${i * ANGLE_EACH}deg) translateZ(${RADIUS}px)`; });
-    function updateGallery(angle) {
-      if (!rotator) return;
-      rotator.style.transform = `rotateY(${angle}deg)`;
-      cards.forEach((card, i) => {
-        const rel = ((i * ANGLE_EACH + angle) % 360 + 360) % 360;
-        card.style.opacity = Math.max(0.25, 1 - (rel > 180 ? 360 - rel : rel) / 180);
-      });
-    }
-    function autoRotate() { if (!isScrollingGallery) { autoAngle += 0.018; updateGallery(autoAngle); } requestAnimationFrame(autoRotate); }
-    requestAnimationFrame(autoRotate);
-    window.addEventListener('scroll', () => {
-      if (!driver) return;
-      const rect = driver.getBoundingClientRect();
-      const prog = Math.max(0, Math.min(1, -rect.top / (driver.offsetHeight - window.innerHeight)));
-      if (prog > 0 && prog < 1) { isScrollingGallery = true; autoAngle = prog * 360; updateGallery(autoAngle); clearTimeout(scrollTimer); scrollTimer = setTimeout(() => { isScrollingGallery = false; }, 200); }
-    }, { passive: true });
+    // SWIPER GALLERY
+    new Swiper('#gallerySwiper', {
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      spaceBetween: 24,
+      loop: true,
+      speed: 700,
+      autoplay: { delay: 3200, disableOnInteraction: false },
+      pagination: { el: '.gallery-swiper .swiper-pagination', clickable: true },
+    });
 
     // INSTAGRAM STICKY
     const igSticky = document.getElementById('igSticky');
