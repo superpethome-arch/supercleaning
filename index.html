@@ -157,14 +157,28 @@
     /* SERVICES */
     .services { background: var(--off-white); }
     .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 56px; }
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .services-carousel-wrap { overflow: hidden; position: relative; margin: 0 -24px; padding: 12px 0 24px; }
+    .services-carousel-wrap::before, .services-carousel-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+    .services-carousel-wrap::before { left: 0; background: linear-gradient(to right, var(--off-white), transparent); }
+    .services-carousel-wrap::after { right: 0; background: linear-gradient(to left, var(--off-white), transparent); }
+    .services-grid { display: flex; gap: 20px; width: max-content; animation: servicesScroll 38s linear infinite; padding: 8px 24px; }
+    .services-grid:hover { animation-play-state: paused; }
+    .services-grid .service-card { width: 280px; flex-shrink: 0; }
+    @keyframes servicesScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .service-card { background: white; border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow); border: 1px solid #EEEDED; transition: transform .3s, box-shadow .3s, border-color .3s; position: relative; overflow: hidden; }
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transition: transform .3s; }
     .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--red-mid); }
     .service-card:hover::before { transform: scaleX(1); }
     .service-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
     .service-icon.red { background: var(--red-light); }
+    .service-icon.red svg { color: var(--red); }
     .service-icon.dark { background: #ECEAEB; }
+    .service-icon.dark svg { color: var(--dark-nav); }
+    .service-icon svg { width: 26px; height: 26px; stroke-width: 1.75; }
+    .perk-icon svg { width: 22px; height: 22px; stroke-width: 1.75; color: var(--red); }
+    .trust-item svg { width: 15px; height: 15px; flex-shrink: 0; color: rgba(255,255,255,.8); }
+    .tl-icon svg { width: 16px; height: 16px; stroke-width: 2; }
+    .footer-social svg { width: 18px; height: 18px; stroke-width: 1.75; }
     .service-card h3 { font-size: 17px; font-weight: 700; color: var(--near-black); margin-bottom: 10px; }
     .service-card p { font-size: 14px; color: var(--gray-text); line-height: 1.65; margin-bottom: 18px; }
     .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -195,7 +209,7 @@
 
     /* GALLERY */
     .gallery-section { background: var(--near-black); padding: 0; overflow: hidden; }
-    .gallery-scroll-driver { height: 400vh; position: relative; }
+    .gallery-scroll-driver { height: 280vh; position: relative; }
     .gallery-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
     .gallery-header { text-align: center; position: absolute; top: 60px; z-index: 10; }
     .gallery-header .section-label { justify-content: center; color: #FF9099; }
@@ -395,12 +409,12 @@
         </div>
       </a>
       <div class="tubelight-pill" id="tubelightPill">
-        <a href="#home"         class="tubelight-link active" data-section="home"><span class="tl-icon">🏠</span><span class="tl-text">Home</span></a>
-        <a href="#services"     class="tubelight-link" data-section="services"><span class="tl-icon">🧹</span><span class="tl-text">Services</span></a>
-        <a href="#about"        class="tubelight-link" data-section="about"><span class="tl-icon">👤</span><span class="tl-text">About</span></a>
-        <a href="#testimonials" class="tubelight-link" data-section="testimonials"><span class="tl-icon">⭐</span><span class="tl-text">Reviews</span></a>
-        <a href="#faq"          class="tubelight-link" data-section="faq"><span class="tl-icon">❓</span><span class="tl-text">FAQ</span></a>
-        <a href="#contact"      class="tubelight-link" data-section="contact"><span class="tl-icon">✉️</span><span class="tl-text">Contact</span></a>
+        <a href="#home"         class="tubelight-link active" data-section="home"><span class="tl-icon"><i data-lucide="home"></i></span><span class="tl-text">Home</span></a>
+        <a href="#services"     class="tubelight-link" data-section="services"><span class="tl-icon"><i data-lucide="sparkles"></i></span><span class="tl-text">Services</span></a>
+        <a href="#about"        class="tubelight-link" data-section="about"><span class="tl-icon"><i data-lucide="user"></i></span><span class="tl-text">About</span></a>
+        <a href="#testimonials" class="tubelight-link" data-section="testimonials"><span class="tl-icon"><i data-lucide="star"></i></span><span class="tl-text">Reviews</span></a>
+        <a href="#faq"          class="tubelight-link" data-section="faq"><span class="tl-icon"><i data-lucide="help-circle"></i></span><span class="tl-text">FAQ</span></a>
+        <a href="#contact"      class="tubelight-link" data-section="contact"><span class="tl-icon"><i data-lucide="mail"></i></span><span class="tl-text">Contact</span></a>
       </div>
       <div class="nav-cta-wrap">
         <a href="#contact" class="neon-btn neon-solid neon-sm">Get a Quote</a>
@@ -460,15 +474,15 @@
   <!-- TRUST BAR -->
   <div class="trust-bar">
     <div class="trust-track">
-      <div class="trust-item"><span class="icon">⭐</span> 4.9 Stars on Google Business</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">🏅</span> Serving Cape Cod since 2004</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">🔒</span> Trusted, Background-Checked Team</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">📞</span> Emergency and Same-Day Availability</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">💚</span> Eco-Friendly Products Available</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">⭐</span> 4.9 Stars on Google Business</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">🏅</span> Serving Cape Cod since 2004</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">🔒</span> Trusted, Background-Checked Team</div><span class="trust-sep">·</span>
-      <div class="trust-item"><span class="icon">📞</span> Emergency and Same-Day Availability</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="star"></i></span> 4.9 Stars on Google Business</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="award"></i></span> Serving Cape Cod since 2004</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="shield-check"></i></span> Trusted, Background-Checked Team</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="phone"></i></span> Emergency and Same-Day Availability</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="leaf"></i></span> Eco-Friendly Products Available</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="star"></i></span> 4.9 Stars on Google Business</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="award"></i></span> Serving Cape Cod since 2004</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="shield-check"></i></span> Trusted, Background-Checked Team</div><span class="trust-sep">·</span>
+      <div class="trust-item"><span class="icon"><i data-lucide="phone"></i></span> Emergency and Same-Day Availability</div><span class="trust-sep">·</span>
       <div class="trust-item"><span class="icon">💚</span> Eco-Friendly Products Available</div><span class="trust-sep">·</span>
     </div>
   </div>
@@ -483,14 +497,25 @@
         </div>
         <p class="section-sub">From your everyday home to your seasonal rental property, we bring the same care and professionalism to every single job.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon red">🏡</div><h3>Residential Cleaning</h3><p>Regular or one-time house cleaning tailored to your needs. Thorough, reliable, and consistent every visit.</p><div class="service-tags"><span class="service-tag">Weekly</span><span class="service-tag">Bi-Weekly</span><span class="service-tag">Monthly</span><span class="service-tag">One-Time</span></div></div>
-        <div class="service-card"><div class="service-icon dark">🏖️</div><h3>Vacation Home and Airbnb</h3><p>Fast, reliable turnovers between guests. Flexible scheduling even during peak summer weekends.</p><div class="service-tags"><span class="service-tag">Airbnb Turnover</span><span class="service-tag">Guest Ready</span><span class="service-tag">Flexible</span></div></div>
-        <div class="service-card"><div class="service-icon red">✨</div><h3>Deep Cleaning</h3><p>Top-to-bottom clean for spring openings, move-ins, move-outs, or seasonal resets.</p><div class="service-tags"><span class="service-tag">Move-In/Out</span><span class="service-tag">Post-Renovation</span><span class="service-tag">Spring</span></div></div>
-        <div class="service-card"><div class="service-icon dark">🏢</div><h3>Commercial Cleaning</h3><p>Keep your business space clean and welcoming. Flexible scheduling, minimal disruption.</p><div class="service-tags"><span class="service-tag">Offices</span><span class="service-tag">Small Business</span><span class="service-tag">B&amp;Bs</span></div></div>
-        <div class="service-card"><div class="service-icon red">⚡</div><h3>Emergency Cleaning</h3><p>Last-minute guests? Same-day and emergency availability across Cape Cod whenever you need us.</p><div class="service-tags"><span class="service-tag">Same-Day</span><span class="service-tag">Last-Minute</span><span class="service-tag">Weekend</span></div></div>
-        <div class="service-card"><div class="service-icon dark">🌿</div><h3>Seasonal Open and Close</h3><p>Opening cleans in spring and thorough closing cleans when summer ends. Full property care.</p><div class="service-tags"><span class="service-tag">Spring Opening</span><span class="service-tag">Fall Closing</span><span class="service-tag">Full Property</span></div></div>
-        <div class="service-card"><div class="service-icon red">⚓</div><h3>Boat Cleaning</h3><p>Interior and exterior boat cleaning to keep your vessel looking its best all season long. Meticulous attention to every detail, from cabin to deck.</p><div class="service-tags"><span class="service-tag">Interior</span><span class="service-tag">Exterior</span><span class="service-tag">Seasonal</span><span class="service-tag">Cape Cod</span></div></div>
+      <div class="services-carousel-wrap">
+      <div class="services-grid" aria-label="Services carousel">
+        <!-- set 1 -->
+        <div class="service-card"><div class="service-icon red"><i data-lucide="home"></i></div><h3>Residential Cleaning</h3><p>Regular or one-time house cleaning tailored to your needs. Thorough, reliable, and consistent every visit.</p><div class="service-tags"><span class="service-tag">Weekly</span><span class="service-tag">Bi-Weekly</span><span class="service-tag">Monthly</span><span class="service-tag">One-Time</span></div></div>
+        <div class="service-card"><div class="service-icon dark"><i data-lucide="sun"></i></div><h3>Vacation Home and Airbnb</h3><p>Fast, reliable turnovers between guests. Flexible scheduling even during peak summer weekends.</p><div class="service-tags"><span class="service-tag">Airbnb Turnover</span><span class="service-tag">Guest Ready</span><span class="service-tag">Flexible</span></div></div>
+        <div class="service-card"><div class="service-icon red"><i data-lucide="sparkles"></i></div><h3>Deep Cleaning</h3><p>Top-to-bottom clean for spring openings, move-ins, move-outs, or seasonal resets.</p><div class="service-tags"><span class="service-tag">Move-In/Out</span><span class="service-tag">Post-Renovation</span><span class="service-tag">Spring</span></div></div>
+        <div class="service-card"><div class="service-icon dark"><i data-lucide="building-2"></i></div><h3>Commercial Cleaning</h3><p>Keep your business space clean and welcoming. Flexible scheduling, minimal disruption.</p><div class="service-tags"><span class="service-tag">Offices</span><span class="service-tag">Small Business</span><span class="service-tag">B&amp;Bs</span></div></div>
+        <div class="service-card"><div class="service-icon red"><i data-lucide="zap"></i></div><h3>Emergency Cleaning</h3><p>Last-minute guests? Same-day and emergency availability across Cape Cod whenever you need us.</p><div class="service-tags"><span class="service-tag">Same-Day</span><span class="service-tag">Last-Minute</span><span class="service-tag">Weekend</span></div></div>
+        <div class="service-card"><div class="service-icon dark"><i data-lucide="leaf"></i></div><h3>Seasonal Open and Close</h3><p>Opening cleans in spring and thorough closing cleans when summer ends. Full property care.</p><div class="service-tags"><span class="service-tag">Spring Opening</span><span class="service-tag">Fall Closing</span><span class="service-tag">Full Property</span></div></div>
+        <div class="service-card"><div class="service-icon red"><i data-lucide="anchor"></i></div><h3>Boat Cleaning</h3><p>Interior and exterior boat cleaning to keep your vessel looking its best all season long. Meticulous attention to every detail, from cabin to deck.</p><div class="service-tags"><span class="service-tag">Interior</span><span class="service-tag">Exterior</span><span class="service-tag">Seasonal</span><span class="service-tag">Cape Cod</span></div></div>
+        <!-- set 2 — duplicate for seamless loop -->
+        <div class="service-card" aria-hidden="true"><div class="service-icon red"><i data-lucide="home"></i></div><h3>Residential Cleaning</h3><p>Regular or one-time house cleaning tailored to your needs. Thorough, reliable, and consistent every visit.</p><div class="service-tags"><span class="service-tag">Weekly</span><span class="service-tag">Bi-Weekly</span><span class="service-tag">Monthly</span><span class="service-tag">One-Time</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon dark"><i data-lucide="sun"></i></div><h3>Vacation Home and Airbnb</h3><p>Fast, reliable turnovers between guests. Flexible scheduling even during peak summer weekends.</p><div class="service-tags"><span class="service-tag">Airbnb Turnover</span><span class="service-tag">Guest Ready</span><span class="service-tag">Flexible</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon red"><i data-lucide="sparkles"></i></div><h3>Deep Cleaning</h3><p>Top-to-bottom clean for spring openings, move-ins, move-outs, or seasonal resets.</p><div class="service-tags"><span class="service-tag">Move-In/Out</span><span class="service-tag">Post-Renovation</span><span class="service-tag">Spring</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon dark"><i data-lucide="building-2"></i></div><h3>Commercial Cleaning</h3><p>Keep your business space clean and welcoming. Flexible scheduling, minimal disruption.</p><div class="service-tags"><span class="service-tag">Offices</span><span class="service-tag">Small Business</span><span class="service-tag">B&amp;Bs</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon red"><i data-lucide="zap"></i></div><h3>Emergency Cleaning</h3><p>Last-minute guests? Same-day and emergency availability across Cape Cod whenever you need us.</p><div class="service-tags"><span class="service-tag">Same-Day</span><span class="service-tag">Last-Minute</span><span class="service-tag">Weekend</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon dark"><i data-lucide="leaf"></i></div><h3>Seasonal Open and Close</h3><p>Opening cleans in spring and thorough closing cleans when summer ends. Full property care.</p><div class="service-tags"><span class="service-tag">Spring Opening</span><span class="service-tag">Fall Closing</span><span class="service-tag">Full Property</span></div></div>
+        <div class="service-card" aria-hidden="true"><div class="service-icon red"><i data-lucide="anchor"></i></div><h3>Boat Cleaning</h3><p>Interior and exterior boat cleaning to keep your vessel looking its best all season long. Meticulous attention to every detail, from cabin to deck.</p><div class="service-tags"><span class="service-tag">Interior</span><span class="service-tag">Exterior</span><span class="service-tag">Seasonal</span><span class="service-tag">Cape Cod</span></div></div>
+      </div>
       </div>
     </div>
   </section>
@@ -505,10 +530,10 @@
           <p class="section-sub">I started Super Cleaning CC in 2004 with one goal: to offer Cape Cod families the kind of cleaning service I would want in my own home. Reliable, careful, and truly personal.</p>
           <p style="font-size:15px;color:var(--gray-text);margin-top:16px;line-height:1.7;">Over 20 years later, many of my clients have been with me since the very beginning. That kind of loyalty means everything to me. I am your direct contact, and every job carries my name and reputation.</p>
           <div class="about-perks">
-            <div class="perk"><div class="perk-icon">🤝</div><div class="perk-text"><strong>Personalized and Reliable</strong><span>I am your direct point of contact. No call centers, no strangers.</span></div></div>
-            <div class="perk"><div class="perk-icon">📍</div><div class="perk-text"><strong>Deep Local Knowledge</strong><span>I know Cape Cod properties and the seasonal cycle better than anyone.</span></div></div>
-            <div class="perk"><div class="perk-icon">🕐</div><div class="perk-text"><strong>Flexible Scheduling</strong><span>Mornings, weekends, emergencies — I adapt so you do not have to worry.</span></div></div>
-            <div class="perk"><div class="perk-icon">✅</div><div class="perk-text"><strong>Trained and Trusted Team</strong><span>Every team member is vetted and trained to my high standards since day one.</span></div></div>
+            <div class="perk"><div class="perk-icon"><i data-lucide="handshake"></i></div><div class="perk-text"><strong>Personalized and Reliable</strong><span>I am your direct point of contact. No call centers, no strangers.</span></div></div>
+            <div class="perk"><div class="perk-icon"><i data-lucide="map-pin"></i></div><div class="perk-text"><strong>Deep Local Knowledge</strong><span>I know Cape Cod properties and the seasonal cycle better than anyone.</span></div></div>
+            <div class="perk"><div class="perk-icon"><i data-lucide="clock"></i></div><div class="perk-text"><strong>Flexible Scheduling</strong><span>Mornings, weekends, emergencies — I adapt so you do not have to worry.</span></div></div>
+            <div class="perk"><div class="perk-icon"><i data-lucide="check-circle"></i></div><div class="perk-text"><strong>Trained and Trusted Team</strong><span>Every team member is vetted and trained to my high standards since day one.</span></div></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;">
@@ -711,9 +736,9 @@
           </a>
           <p class="footer-desc">Over 20 years of trusted cleaning services across Cape Cod. Residential, vacation rentals, Airbnbs, and commercial spaces — all cleaned with care and a personal touch.</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/supercleaning.cc" target="_blank">📸</a>
-            <a href="#">🔍</a>
-            <a href="#">📘</a>
+            <a href="https://www.instagram.com/supercleaning.cc" target="_blank"><i data-lucide="instagram"></i></a>
+            <a href="#"><i data-lucide="search"></i></a>
+            <a href="#"><i data-lucide="facebook"></i></a>
           </div>
         </div>
         <div class="footer-col"><h5>Services</h5><ul><li><a href="#services">Residential Cleaning</a></li><li><a href="#services">Vacation Home Cleaning</a></li><li><a href="#services">Airbnb Turnovers</a></li><li><a href="#services">Deep Cleaning</a></li><li><a href="#services">Commercial Cleaning</a></li><li><a href="#services">Emergency Cleaning</a></li><li><a href="#services">Boat Cleaning</a></li></ul></div>
@@ -830,5 +855,7 @@
       revealObserver.observe(el);
     });
   </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
