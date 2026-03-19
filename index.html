@@ -54,7 +54,7 @@
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
     /* MOBILE FULL-SCREEN MENU */
-    .nav-mobile-menu { position: fixed; inset: 0; z-index: 2100; background: var(--near-black); display: flex; flex-direction: column; padding: 88px 28px 36px; transform: translateY(-100%); opacity: 0; transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .3s ease; pointer-events: none; }
+    .nav-mobile-menu { position: fixed; inset: 0; z-index: 2100; background: var(--near-black); display: flex; flex-direction: column; padding: max(104px, calc(env(safe-area-inset-top) + 80px)) 28px max(36px, calc(env(safe-area-inset-bottom) + 24px)); transform: translateY(-100%); opacity: 0; transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .3s ease; pointer-events: none; }
     .nav-mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
     .nav-mobile-links { display: flex; flex-direction: column; gap: 0; flex: 1; }
     .nav-mobile-link { display: flex; align-items: center; gap: 16px; padding: 18px 0; font-size: 21px; font-weight: 700; color: rgba(255,255,255,.72); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.07); letter-spacing: -0.3px; transition: color .2s, padding-left .25s cubic-bezier(.4,0,.2,1); }
@@ -1022,6 +1022,9 @@
     function openMobileMenu() {
       hamburger.classList.add('open');
       hamburger.setAttribute('aria-expanded', 'true');
+      // sync top padding with actual navbar height so first link is never hidden
+      const navH = document.getElementById('navbar').getBoundingClientRect().height;
+      mobileMenu.style.paddingTop = (navH + 20) + 'px';
       mobileMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
       const ig = document.getElementById('igSticky');
