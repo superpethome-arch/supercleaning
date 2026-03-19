@@ -48,9 +48,9 @@
     .vcr-line-1 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: white; letter-spacing: -1px; }
     .vcr-line-2 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: white; letter-spacing: -1px; }
     .vcr-line-3 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: var(--red); letter-spacing: -1px; }
-    .vcr-greeting { display: flex; align-items: center; gap: 10px; margin-top: 28px; opacity: 0; animation: fadeUp .4s ease forwards; animation-delay: 2.2s; }
-    .vcr-greeting-wave { font-size: 24px; display: inline-block; transform-origin: 70% 80%; animation: wave 1.6s ease infinite; animation-delay: 2.5s; }
-    .vcr-greeting-text { font-size: clamp(14px,2.2vw,18px); font-weight: 500; color: rgba(255,255,255,.75); overflow: hidden; white-space: nowrap; width: 0; border-right: 2px solid var(--red); animation: typing 1.6s steps(42,end) forwards, blink .6s step-end 8; animation-delay: 2.4s, 2.4s; }
+    .vcr-greeting { display: flex; align-items: center; gap: 10px; margin-top: 28px; opacity: 0; animation: fadeUp .4s ease forwards; animation-delay: 2.2s; max-width: calc(100vw - 80px); overflow: hidden; }
+    .vcr-greeting-wave { font-size: 24px; display: inline-block; transform-origin: 70% 80%; animation: wave 1.6s ease infinite; animation-delay: 2.5s; flex-shrink: 0; }
+    .vcr-greeting-text { font-size: clamp(13px,2.2vw,17px); font-weight: 500; color: rgba(255,255,255,.75); overflow: hidden; white-space: nowrap; width: 0; max-width: calc(100vw - 100px); border-right: 2px solid var(--red); animation: typing 1.6s steps(42,end) forwards, blink .6s step-end 8; animation-delay: 2.4s, 2.4s; }
     .vcr-bar { width: 0; height: 2px; background: var(--red); margin-top: 24px; border-radius: 2px; animation: expandBar .8s ease forwards; animation-delay: 1.65s; box-shadow: 0 0 10px rgba(206,44,56,.6); }
     .vcr-sub { margin-top: 20px; font-size: 14px; font-weight: 500; color: var(--gray-text); letter-spacing: 1px; opacity: 0; animation: fadeUp .5s ease forwards; animation-delay: 1.9s; }
     @keyframes slideUp { to { transform: translateY(0); } }
