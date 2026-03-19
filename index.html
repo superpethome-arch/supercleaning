@@ -1055,12 +1055,15 @@
     }
 
     // SWIPER GALLERY
-    new Swiper('#gallerySwiper', {
+    const gallerySwiper = new Swiper('#gallerySwiper', {
       slidesPerView: 'auto',
       centeredSlides: true,
       spaceBetween: 24,
       loop: true,
+      loopedSlides: 6,
       speed: 3500,
+      grabCursor: true,
+      touchStartPreventDefault: false,
       autoplay: {
         delay: 0,
         disableOnInteraction: false,
@@ -1068,6 +1071,9 @@
         waitForTransition: false,
       },
       pagination: { el: '.gallery-swiper .swiper-pagination', clickable: true },
+      on: {
+        touchEnd: function() { this.autoplay.start(); },
+      },
     });
 
     // INSTAGRAM STICKY
