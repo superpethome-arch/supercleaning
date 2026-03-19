@@ -127,6 +127,11 @@
     .hero-bubble:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -120px; opacity: .04; }
     .hero-bubble:nth-child(2) { width: 200px; height: 200px; bottom: 60px; left: -80px; opacity: .03; }
     .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .hero-image-wrap { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 32px 80px rgba(0,0,0,.5); }
+    .hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-image-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, rgba(12,7,9,.45)); pointer-events: none; }
+    .hero-image-badge { position: absolute; bottom: 18px; left: 18px; background: rgba(12,7,9,.75); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 10px 16px; color: white; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; z-index: 2; }
+    .hero-image-badge svg { width: 14px; height: 14px; color: var(--red); }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.22); color: white; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; letter-spacing: .3px; }
     .hero-title { font-size: clamp(36px,5vw,58px); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
     .hero-title em { font-style: normal; color: #FF9099; }
@@ -145,14 +150,22 @@
     .avatar-circles-row { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
     .avatar-circles-text { font-size: 14px; color: rgba(255,255,255,.75); font-weight: 500; }
     .avatar-circles-text strong { color: white; }
-    .hero-card { background: rgba(255,255,255,.10); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.20); border-radius: 20px; padding: 36px; color: white; }
-    .hero-card-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-    .hero-service-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .hero-service-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,.88); font-weight: 500; }
-    .hero-service-list .check { width: 26px; height: 26px; background: rgba(206,44,56,.4); border: 1px solid rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-    .hero-card-divider { border: none; border-top: 1px solid rgba(255,255,255,.13); margin: 24px 0; }
-    .hero-contact-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 10px; font-weight: 500; }
-    .hero-contact-row strong { color: white; }
+    /* SERVICES POPUP */
+    .svc-popup-overlay { position: fixed; inset: 0; background: rgba(12,7,9,.65); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity .28s ease; }
+    .svc-popup-overlay.open { opacity: 1; pointer-events: all; }
+    .svc-popup { background: var(--near-black); border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: 38px 36px 32px; color: white; max-width: 420px; width: 100%; position: relative; transform: translateY(18px) scale(.97); transition: transform .28s cubic-bezier(.34,1.56,.64,1), opacity .28s ease; opacity: 0; }
+    .svc-popup-overlay.open .svc-popup { transform: translateY(0) scale(1); opacity: 1; }
+    .svc-popup-close { position: absolute; top: 16px; right: 18px; background: none; border: none; color: rgba(255,255,255,.5); font-size: 22px; cursor: pointer; line-height: 1; transition: color .15s; }
+    .svc-popup-close:hover { color: white; }
+    .svc-popup-title { font-size: 17px; font-weight: 700; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .svc-popup-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 26px; }
+    .svc-popup-list li { display: flex; align-items: center; gap: 12px; font-size: 14.5px; color: rgba(255,255,255,.88); font-weight: 500; }
+    .svc-popup-list .check { width: 24px; height: 24px; background: rgba(206,44,56,.35); border: 1px solid rgba(206,44,56,.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; color: #FF9099; }
+    .svc-popup-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 0 0 18px; }
+    .svc-popup-info { display: flex; flex-direction: column; gap: 9px; }
+    .svc-popup-row { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,.7); font-weight: 500; }
+    .svc-popup-row strong { color: white; }
+    .svc-popup-row svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--red); }
 
     /* SERVICES */
     .services { background: var(--off-white); }
@@ -209,8 +222,8 @@
 
     /* GALLERY */
     .gallery-section { background: var(--near-black); padding: 0; overflow: hidden; }
-    .gallery-scroll-driver { height: 280vh; position: relative; }
-    .gallery-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+    .gallery-scroll-driver { height: auto; position: relative; }
+    .gallery-sticky { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
     .gallery-header { text-align: center; position: absolute; top: 60px; z-index: 10; }
     .gallery-header .section-label { justify-content: center; color: #FF9099; }
     .gallery-header .section-label::before { display: none; }
@@ -349,7 +362,7 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; }
-      .hero-card { display: none; }
+      .hero-image-wrap { display: none; }
       .services-header { grid-template-columns: 1fr; gap: 24px; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .seasons-grid { grid-template-columns: 1fr 1fr; }
@@ -433,7 +446,7 @@
         <p class="hero-sub">Over 20 years keeping Cape Cod homes spotless. From cozy residences to vacation rentals and Airbnbs. Reliable, detail-oriented, and always personal.</p>
         <div class="hero-actions">
           <a href="#contact" class="neon-btn neon-solid neon-lg">Get a Free Quote</a>
-          <a href="#services" class="neon-btn neon-ghost neon-md">See Our Services</a>
+          <button class="neon-btn neon-ghost neon-md" id="svcPopupBtn" type="button">Our Services ↗</button>
         </div>
         <div class="avatar-circles-row">
           <div class="avatar-circles">
@@ -453,20 +466,9 @@
           <div class="hero-stat"><strong>4.9★</strong><span>Google Rating</span></div>
         </div>
       </div>
-      <div class="hero-card">
-        <div class="hero-card-title">🏠 Our Services</div>
-        <ul class="hero-service-list">
-          <li><span class="check">✓</span> Residential Home Cleaning</li>
-          <li><span class="check">✓</span> Vacation Home and Airbnb Turnovers</li>
-          <li><span class="check">✓</span> Deep Cleaning and Move-In / Move-Out</li>
-          <li><span class="check">✓</span> Commercial Cleaning</li>
-          <li><span class="check">✓</span> Emergency and Same-Day Cleaning</li>
-          <li><span class="check">✓</span> Seasonal Opening and Closing Cleans</li>
-        </ul>
-        <hr class="hero-card-divider" />
-        <div class="hero-contact-row">📍 <span>North Falmouth, MA — All Cape Cod</span></div>
-        <div class="hero-contact-row">💳 <span>Venmo and Zelle accepted</span></div>
-        <div class="hero-contact-row">📱 <strong>@supercleaning.cc</strong></div>
+      <div class="hero-image-wrap">
+        <img src="7.jpeg" alt="Super Cleaning CC team — Cape Cod, MA" />
+        <div class="hero-image-badge"><i data-lucide="users"></i> Our Team · Cape Cod, MA</div>
       </div>
     </div>
   </section>
@@ -603,25 +605,31 @@
     </div>
     <div class="marquee-outer">
       <div class="marquee-track">
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana has been cleaning our home since 2007. She knows exactly what we like and always goes above and beyond. Practically family."</p><div class="testimonial-author"><div class="author-avatar">S</div><div class="author-info"><strong>Sarah M.</strong><span>Falmouth, MA · since 2007</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"The team handles all our Airbnb turnovers. Guests consistently comment on how clean and well-prepared the property is. Essential service."</p><div class="testimonial-author"><div class="author-avatar">R</div><div class="author-info"><strong>Robert K.</strong><span>Barnstable, MA · Airbnb Host</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Called for a same-day emergency before guests arrived and they came through within hours. Lifesavers! I recommend them to every homeowner."</p><div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><strong>Maria D.</strong><span>Sandwich, MA · B&amp;B Owner</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"5 years of consistent, reliable, thorough cleaning every single time. Our home has never looked better."</p><div class="testimonial-author"><div class="author-avatar">J</div><div class="author-info"><strong>James T.</strong><span>Falmouth, MA · since 2019</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Incredibly detail-oriented and trustworthy. She has access to our home when we are away and we never worry for a second."</p><div class="testimonial-author"><div class="author-avatar">L</div><div class="author-info"><strong>Linda C.</strong><span>Mashpee, MA · since 2011</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Our vacation home is always spotless when we arrive. Adriana coordinates everything perfectly for our tight turnaround schedule."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Thomas A.</strong><span>Bourne, MA · Vacation Home</span></div></div></div>
-        <!-- duplicate for loop -->
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana has been cleaning our home since 2007. She knows exactly what we like and always goes above and beyond. Practically family."</p><div class="testimonial-author"><div class="author-avatar">S</div><div class="author-info"><strong>Sarah M.</strong><span>Falmouth, MA · since 2007</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"The team handles all our Airbnb turnovers. Guests consistently comment on how clean and well-prepared the property is. Essential service."</p><div class="testimonial-author"><div class="author-avatar">R</div><div class="author-info"><strong>Robert K.</strong><span>Barnstable, MA · Airbnb Host</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Called for a same-day emergency before guests arrived and they came through within hours. Lifesavers! I recommend them to every homeowner."</p><div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><strong>Maria D.</strong><span>Sandwich, MA · B&amp;B Owner</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"5 years of consistent, reliable, thorough cleaning every single time. Our home has never looked better."</p><div class="testimonial-author"><div class="author-avatar">J</div><div class="author-info"><strong>James T.</strong><span>Falmouth, MA · since 2019</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Incredibly detail-oriented and trustworthy. She has access to our home when we are away and we never worry for a second."</p><div class="testimonial-author"><div class="author-avatar">L</div><div class="author-info"><strong>Linda C.</strong><span>Mashpee, MA · since 2011</span></div></div></div>
-        <div class="tcard"><div class="stars">★★★★★</div><p>"Our vacation home is always spotless when we arrive. Adriana coordinates everything perfectly for our tight turnaround schedule."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Thomas A.</strong><span>Bourne, MA · Vacation Home</span></div></div></div>
+        <!-- Real Google reviews -->
+        <div class="tcard"><div class="stars">★★★★★</div><p>"This team has been incredible to work with. Reliable, responsive, and very detail-oriented. Their consistency and attention to cleanliness played a big role in helping us achieve Superhost status on Airbnb."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Turgut Keskin</strong><span>Airbnb Superhost · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana and her crew have been taking care of turnover cleanings at our rental house for years. The house is spotless for our guests! We have complete trust in her service."</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kerry White</strong><span>Vacation Rental Owner · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Super Cleaning has been an absolute game changer for our property. They consistently deliver an exceptional level of cleanliness. Their dedication gives us complete peace of mind."</p><div class="testimonial-author"><div class="author-avatar">L</div><div class="author-info"><strong>Lake Shore Cottage</strong><span>Short-Term Rental · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana and her team do a fantastic job! I love how 4 people show up and get it done quickly and beautifully! I also really appreciate her flexibility with scheduling."</p><div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><strong>Mary Greggains</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"We've been using Super Cleaning for about 10 years. Adriana has always been very flexible with scheduling. Our house always looks and smells amazing when their crews are finished."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Ter Moran</strong><span>Local Guide · 10+ years client</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"The team is kind, trustworthy, and they treat our home with so much care. It feels amazing to come back to a fresh and spotless house. They really make life easier for our family."</p><div class="testimonial-author"><div class="author-avatar">G</div><div class="author-info"><strong>Gabriella Honorato</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Best cleaning service! Super Cleaning does an amazing job! Top to bottom, reliable, on time, fast, dependable and reasonable. Highly recommend!"</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kim LaTerza</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"I could not be happier with how professional, reliable and reasonable their services are. I also completely trust them in my home. I can not say enough good things about them."</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kathleen Sullivan</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <!-- duplicate for seamless loop -->
+        <div class="tcard"><div class="stars">★★★★★</div><p>"This team has been incredible to work with. Reliable, responsive, and very detail-oriented. Their consistency and attention to cleanliness played a big role in helping us achieve Superhost status on Airbnb."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Turgut Keskin</strong><span>Airbnb Superhost · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana and her crew have been taking care of turnover cleanings at our rental house for years. The house is spotless for our guests! We have complete trust in her service."</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kerry White</strong><span>Vacation Rental Owner · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Super Cleaning has been an absolute game changer for our property. They consistently deliver an exceptional level of cleanliness. Their dedication gives us complete peace of mind."</p><div class="testimonial-author"><div class="author-avatar">L</div><div class="author-info"><strong>Lake Shore Cottage</strong><span>Short-Term Rental · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Adriana and her team do a fantastic job! I love how 4 people show up and get it done quickly and beautifully! I also really appreciate her flexibility with scheduling."</p><div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><strong>Mary Greggains</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"We've been using Super Cleaning for about 10 years. Adriana has always been very flexible with scheduling. Our house always looks and smells amazing when their crews are finished."</p><div class="testimonial-author"><div class="author-avatar">T</div><div class="author-info"><strong>Ter Moran</strong><span>Local Guide · 10+ years client</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"The team is kind, trustworthy, and they treat our home with so much care. It feels amazing to come back to a fresh and spotless house. They really make life easier for our family."</p><div class="testimonial-author"><div class="author-avatar">G</div><div class="author-info"><strong>Gabriella Honorato</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"Best cleaning service! Super Cleaning does an amazing job! Top to bottom, reliable, on time, fast, dependable and reasonable. Highly recommend!"</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kim LaTerza</strong><span>Cape Cod · Google Review</span></div></div></div>
+        <div class="tcard"><div class="stars">★★★★★</div><p>"I could not be happier with how professional, reliable and reasonable their services are. I also completely trust them in my home. I can not say enough good things about them."</p><div class="testimonial-author"><div class="author-avatar">K</div><div class="author-info"><strong>Kathleen Sullivan</strong><span>Cape Cod · Google Review</span></div></div></div>
       </div>
       <div class="marquee-fade-left"></div>
       <div class="marquee-fade-right"></div>
     </div>
-    <div class="testimonials-google" style="margin-top:40px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--gray-text);font-size:14px;font-weight:500;">
-      <span>⭐</span> Verified on <strong style="color:var(--dark-nav);">&nbsp;Google Business Profile&nbsp;</strong> · <a href="https://www.instagram.com/supercleaning.cc" target="_blank">@supercleaning.cc</a>
+    <div class="testimonials-google" style="margin-top:40px;display:flex;align-items:center;justify-content:center;gap:16px;color:var(--gray-text);font-size:14px;font-weight:500;flex-wrap:wrap;">
+      <span>⭐ Verified on <strong style="color:var(--dark-nav);">Google Business Profile</strong></span>
+      <a href="https://g.page/r/CcK0iWhEjjYcEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--near-black);color:white;padding:9px 18px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--near-black)'">Leave us a Review ★</a>
     </div>
   </section>
 
@@ -855,7 +863,40 @@
       revealObserver.observe(el);
     });
   </script>
+  <!-- SERVICES POPUP -->
+  <div class="svc-popup-overlay" id="svcPopupOverlay" role="dialog" aria-modal="true" aria-label="Our Services">
+    <div class="svc-popup">
+      <button class="svc-popup-close" id="svcPopupClose" aria-label="Close">✕</button>
+      <div class="svc-popup-title"><i data-lucide="home"></i> Our Services</div>
+      <ul class="svc-popup-list">
+        <li><span class="check">✓</span> Residential Home Cleaning</li>
+        <li><span class="check">✓</span> Vacation Home and Airbnb Turnovers</li>
+        <li><span class="check">✓</span> Deep Cleaning and Move-In / Move-Out</li>
+        <li><span class="check">✓</span> Commercial Cleaning</li>
+        <li><span class="check">✓</span> Emergency and Same-Day Cleaning</li>
+        <li><span class="check">✓</span> Seasonal Opening and Closing Cleans</li>
+        <li><span class="check">✓</span> Boat Cleaning</li>
+      </ul>
+      <hr class="svc-popup-divider" />
+      <div class="svc-popup-info">
+        <div class="svc-popup-row"><i data-lucide="map-pin"></i> <span>North Falmouth, MA — All Cape Cod</span></div>
+        <div class="svc-popup-row"><i data-lucide="credit-card"></i> <span>Venmo and Zelle accepted</span></div>
+        <div class="svc-popup-row"><i data-lucide="instagram"></i> <strong>@supercleaning.cc</strong></div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+    // Services popup
+    const overlay = document.getElementById('svcPopupOverlay');
+    const openBtn = document.getElementById('svcPopupBtn');
+    const closeBtn = document.getElementById('svcPopupClose');
+    if (openBtn) openBtn.addEventListener('click', () => overlay.classList.add('open'));
+    if (closeBtn) closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.classList.remove('open'); });
+  </script>
 </body>
 </html>
