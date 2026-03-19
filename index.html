@@ -400,29 +400,181 @@
     .ig-sticky-close { position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; background: var(--near-black); border: 2px solid rgba(255,255,255,.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; cursor: pointer; line-height: 1; font-weight: 700; z-index: 1; }
     @media (max-width: 600px) { .ig-sticky-text span { display: none; } }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; }
-      .hero-image-wrap { display: none; }
-      .services-header { grid-template-columns: 1fr; gap: 24px; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .seasons-grid { grid-template-columns: 1fr 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .personas-grid { grid-template-columns: 1fr; }
-      .quote-steps-inner { grid-template-columns: 1fr; gap: 40px; }
-      .adriana-photo-wrap { aspect-ratio: 4/3; }
-      .cta-box { grid-template-columns: 1fr; text-align: center; padding: 40px 28px; }
-      .cta-actions { width: 100%; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .faq-inner { grid-template-columns: 1fr; gap: 36px; }
-      .faq-left { position: static; }
+    /* ============================================================
+       RESPONSIVE — Tablet, Mobile & Small Phone
+       ============================================================ */
+
+    /* Large tablet (≤1100px) */
+    @media (max-width: 1100px) {
+      .footer-top { grid-template-columns: 2fr 1fr 1fr; gap: 36px; }
+      .footer-top > .footer-col:last-child { grid-column: 1 / -1; }
+      .hero-inner { gap: 40px; }
+      .about-inner { gap: 48px; }
+      .faq-inner { gap: 48px; }
+      .contact-inner { gap: 48px; }
+      .cta-box { padding: 48px 40px; gap: 32px; }
     }
-    @media (max-width: 600px) {
-      .services-grid, .seasons-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
-      .hero-stats { flex-direction: column; gap: 16px; }
+
+    /* Tablet (≤900px) */
+    @media (max-width: 900px) {
+      section { padding: 64px 20px; }
+      .seasonal { padding: 64px 20px; }
+
+      /* Navbar */
+      nav { padding: 12px 16px; }
+      nav.scrolled { padding: 8px 16px; }
+      .nav-cta-wrap { display: none; }
+
+      /* Hero */
+      .hero { padding: 100px 20px 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-image-col { order: -1; }
+      .hero-image-wrap { aspect-ratio: 16/9; max-height: 300px; border-radius: 18px; }
+      .hero-stats { justify-content: space-around; padding: 14px 16px; }
+      .hero-sub { font-size: 15px; max-width: 100%; }
+      .hero-title { font-size: clamp(32px,7vw,52px); }
+      .hero-actions { gap: 10px; }
+
+      /* Services */
+      .services-header { grid-template-columns: 1fr; gap: 20px; }
+      .services-grid .service-card { width: 260px; }
+
+      /* About */
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .adriana-photo-wrap { aspect-ratio: 4/3; max-width: 480px; margin: 0 auto; }
+
+      /* Quote Steps */
+      .quote-steps-inner { grid-template-columns: 1fr; gap: 36px; }
+
+      /* Seasonal */
+      .seasons-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+      /* Gallery */
+      .gallery-slide-img { width: 260px; height: 320px; }
+      .gallery-swiper .swiper-slide { width: 260px !important; }
+
+      /* Personas */
+      .personas-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+      /* FAQ */
+      .faq-inner { grid-template-columns: 1fr; gap: 32px; }
+      .faq-left { position: static; }
+
+      /* CTA */
+      .cta-box { grid-template-columns: 1fr; text-align: center; padding: 40px 28px; gap: 28px; }
+      .cta-actions { width: 100%; align-items: center; }
+
+      /* Contact */
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-top > .footer-brand { grid-column: 1 / -1; }
+    }
+
+    /* Mobile (≤640px) */
+    @media (max-width: 640px) {
+      section { padding: 52px 16px; }
+      .seasonal { padding: 52px 16px; }
+      .hero { padding: 88px 16px 52px; }
+      .gallery-section { padding: 56px 0; }
+
+      /* Navbar */
+      nav { padding: 10px 12px; }
+      .tubelight-pill { gap: 0; padding: 4px; }
+      .tubelight-link { padding: 8px 10px; font-size: 13px; }
+      .nav-logo-text { display: none; }
+
+      /* Hero */
+      .hero-title { font-size: clamp(27px,8.5vw,44px); letter-spacing: -.5px; }
+      .hero-sub { font-size: 14px; margin-bottom: 24px; }
+      .hero-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 18px; }
+      .hero-actions { flex-wrap: wrap; gap: 8px; }
+      .hero-stats { flex-wrap: wrap; gap: 10px; padding: 12px; }
+      .hero-stat { flex: 1; min-width: 70px; }
+      .hero-stat strong { font-size: 22px; }
       .hero-stat-divider { display: none; }
-      .form-row { grid-template-columns: 1fr; }
+      .hero-image-wrap { aspect-ratio: 16/10; max-height: 220px; }
+      .hero-image-badge { font-size: 12px; padding: 8px 12px; gap: 6px; }
+      .avatar-circles-row { flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+      .avatar-circles-text { font-size: 13px; }
+
+      /* Services */
+      .services-grid .service-card { width: 240px; padding: 22px 18px; }
+      .services-carousel-wrap::before,
+      .services-carousel-wrap::after { width: 40px; }
+
+      /* About */
+      .adriana-photo-wrap { max-width: 100%; aspect-ratio: 3/4; }
+      .about-perks { gap: 14px; }
+      .perk-icon { width: 38px; height: 38px; }
+
+      /* Quote steps */
+      .quote-steps-left .section-title { font-size: clamp(22px,5vw,32px); }
+
+      /* Seasonal */
+      .seasons-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .season-card { padding: 18px 14px; }
+      .season-emoji { font-size: 26px; margin-bottom: 8px; }
+      .season-card h4 { font-size: 13px; }
+      .season-card p { font-size: 12px; line-height: 1.55; }
+      .season-card .season-months { font-size: 10px; }
+
+      /* Gallery */
+      .gallery-slide-img { width: 200px; height: 260px; }
+      .gallery-swiper .swiper-slide { width: 200px !important; }
+      .gallery-header { margin-bottom: 32px; padding: 0 16px; }
+      .gallery-blob { width: 320px; height: 320px; filter: blur(80px); }
+
+      /* Testimonials */
+      .tcard { width: 280px; padding: 22px 20px; }
+      .marquee-fade-left, .marquee-fade-right { width: 60px; }
+
+      /* Personas */
+      .personas-grid { grid-template-columns: 1fr; gap: 14px; }
+      .persona-card { padding: 24px 18px; }
+      .persona-emoji svg { width: 38px; height: 38px; }
+
+      /* FAQ */
+      .faq-question { font-size: 14px; padding: 16px 4px; }
+      .section-title { font-size: clamp(22px,5vw,36px); }
+      .section-sub { font-size: 15px; }
+
+      /* CTA */
+      .cta-box { padding: 32px 20px; border-radius: 18px; }
+      .cta-section { padding: 52px 16px; }
+
+      /* Contact form */
+      .form-row { grid-template-columns: 1fr; gap: 14px; }
+      .contact-method { gap: 12px; }
+      .contact-method-icon { width: 42px; height: 42px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-top > .footer-brand { grid-column: auto; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+      footer { padding: 44px 16px 28px; }
+
+      /* Services popup — bottom sheet on mobile */
+      .svc-popup-overlay { padding: 0; align-items: flex-end; }
+      .svc-popup { border-radius: 22px 22px 0 0; max-width: 100%; width: 100%; padding: 32px 22px 28px; }
+
+      /* Instagram sticky */
+      .ig-sticky { bottom: 18px; }
+    }
+
+    /* Small phone (≤400px) */
+    @media (max-width: 400px) {
+      .hero-title { font-size: clamp(24px,9.5vw,36px); }
+      .tubelight-link { padding: 7px 8px; font-size: 12px; }
+      .neon-btn.neon-lg  { font-size: 14px; padding: 8px 46px 8px 18px; }
+      .neon-btn.neon-lg  .btn-circle { width: 30px; height: 30px; right: 5px; }
+      .neon-btn.neon-lg:hover  { padding: 8px 18px 8px 46px; }
+      .neon-btn.neon-lg:hover  .btn-circle { right: calc(100% - 35px); }
+      .seasons-grid { grid-template-columns: 1fr; }
+      .about-inner { gap: 28px; }
+      section { padding: 44px 14px; }
+      .hero { padding: 82px 14px 44px; }
     }
   </style>
 </head>
@@ -581,7 +733,7 @@
           <div class="about-perks">
             <div class="perk"><div class="perk-icon"><i data-lucide="handshake"></i></div><div class="perk-text"><strong>Personalized and Reliable</strong><span>I am your direct point of contact. No call centers, no strangers.</span></div></div>
             <div class="perk"><div class="perk-icon"><i data-lucide="map-pin"></i></div><div class="perk-text"><strong>Deep Local Knowledge</strong><span>I know Cape Cod properties and the seasonal cycle better than anyone.</span></div></div>
-            <div class="perk"><div class="perk-icon"><i data-lucide="clock"></i></div><div class="perk-text"><strong>Flexible Scheduling</strong><span>Mornings, weekends, emergencies — I adapt so you do not have to worry.</span></div></div>
+            <div class="perk"><div class="perk-icon"><i data-lucide="clock"></i></div><div class="perk-text"><strong>Flexible Scheduling</strong><span>Mornings, weekends, emergencies. I adapt so you do not have to worry.</span></div></div>
             <div class="perk"><div class="perk-icon"><i data-lucide="check-circle"></i></div><div class="perk-text"><strong>Trained and Trusted Team</strong><span>Every team member is vetted and trained to my high standards since day one.</span></div></div>
           </div>
         </div>
@@ -609,7 +761,7 @@
         <div class="quote-steps-right">
           <div class="quote-step"><div class="quote-step-num">1</div><div class="quote-step-text"><strong>Fill out the short form</strong><span>Just a few details about your home and what you need.</span></div></div>
           <div class="quote-step-line"></div>
-          <div class="quote-step"><div class="quote-step-num">2</div><div class="quote-step-text"><strong>Receive a personalized quote</strong><span>Adriana reviews and sends you a custom price — personally.</span></div></div>
+          <div class="quote-step"><div class="quote-step-num">2</div><div class="quote-step-text"><strong>Receive a personalized quote</strong><span>Adriana reviews and sends you a custom price, personally.</span></div></div>
           <div class="quote-step-line"></div>
           <div class="quote-step"><div class="quote-step-num">3</div><div class="quote-step-text"><strong>Schedule your first cleaning</strong><span>Pick a time that works for you. We handle the rest.</span></div></div>
           <a href="#contact" class="neon-btn neon-solid neon-md" style="margin-top:28px;display:inline-flex;">Get My Free Quote</a>
@@ -721,7 +873,7 @@
       <div class="personas-grid">
         <div class="persona-card"><span class="persona-emoji"><i data-lucide="house"></i></span><div class="persona-type">Residential</div><h3>The Busy Homeowner</h3><p>You love a clean home but life is hectic. You need a reliable team who shows up on schedule and you never have to think about again.</p><div class="persona-needs"><span class="persona-need">Regular Schedule</span><span class="persona-need">Consistent Quality</span><span class="persona-need">Trusted Access</span></div></div>
         <div class="persona-card"><span class="persona-emoji"><i data-lucide="sun"></i></span><div class="persona-type">Vacation Rental</div><h3>The Summer Property Owner</h3><p>You own a Cape Cod property that needs to be perfect for every guest rotation. Fast turnovers, impeccable standards, zero stress.</p><div class="persona-needs"><span class="persona-need">Guest-Ready</span><span class="persona-need">Flexible Timing</span><span class="persona-need">Airbnb Ready</span></div></div>
-        <div class="persona-card"><span class="persona-emoji"><i data-lucide="star"></i></span><div class="persona-type">B&amp;B / Short-Term Rental</div><h3>The Airbnb Host</h3><p>Reviews are your business. You need a cleaning team as invested in your guest experience as you are — fast and available on weekends.</p><div class="persona-needs"><span class="persona-need">5-Star Standards</span><span class="persona-need">Weekend Ready</span><span class="persona-need">Emergency Cover</span></div></div>
+        <div class="persona-card"><span class="persona-emoji"><i data-lucide="star"></i></span><div class="persona-type">B&amp;B / Short-Term Rental</div><h3>The Airbnb Host</h3><p>Reviews are your business. You need a cleaning team as invested in your guest experience as you are, fast and available on weekends.</p><div class="persona-needs"><span class="persona-need">5-Star Standards</span><span class="persona-need">Weekend Ready</span><span class="persona-need">Emergency Cover</span></div></div>
       </div>
     </div>
   </section>
@@ -741,9 +893,9 @@
           </div>
         </div>
         <div class="faq-list">
-          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>What areas of Cape Cod do you serve?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We serve all of Cape Cod from North Falmouth, MA — including Falmouth, Sandwich, Barnstable, Mashpee, Bourne, and surrounding towns across Barnstable County.</p></div></div>
+          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>What areas of Cape Cod do you serve?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We serve all of Cape Cod from North Falmouth, MA, including Falmouth, Sandwich, Barnstable, Mashpee, Bourne, and surrounding towns across Barnstable County.</p></div></div>
           <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>How do I get a quote?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Fill out the contact form or message us on Instagram @supercleaning.cc. Tell us about your property and needs. Adriana will personally get back to you with a custom quote, usually within a few hours.</p></div></div>
-          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Do I need to be home during the cleaning?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Not at all. Many long-term clients trust us with a key or entry code. After 20+ years in Cape Cod, trust is the foundation of what we do — your home is always treated with the utmost care.</p></div></div>
+          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Do I need to be home during the cleaning?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Not at all. Many long-term clients trust us with a key or entry code. After 20+ years in Cape Cod, trust is the foundation of what we do. Your home is always treated with the utmost care.</p></div></div>
           <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Do you bring your own cleaning supplies?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, we bring everything needed. If you have specific preferences — eco-friendly or fragrance-free products — just let us know and we will accommodate your request.</p></div></div>
           <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Can you handle last-minute or same-day bookings?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We do our best to accommodate emergencies. Unexpected guests arriving? Contact us as soon as possible and we will do everything we can to be there, including weekends during peak season.</p></div></div>
           <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>How do Airbnb and vacation rental turnovers work?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We coordinate around your guest check-out and check-in times. Full turnover: all rooms cleaned, linens changed, essentials restocked, property guest-ready. Experienced at quick turnarounds even on peak summer weekends.</p></div></div>
@@ -801,7 +953,7 @@
               <option>Commercial Cleaning</option>
               <option>Emergency / Same-Day Cleaning</option>
               <option>Boat Cleaning</option>
-              <option>Not sure — I'd like a recommendation</option>
+              <option>Not sure? I'd like a recommendation</option>
             </select>
           </div>
           <div class="form-group"><label>Tell us about your property</label><textarea placeholder="Location, size, frequency, special requirements..."></textarea></div>
@@ -820,7 +972,7 @@
             <div class="nav-logo-icon"><img src="logo.png" alt="Super Cleaning CC logo"></div>
             <div class="nav-logo-text"><strong>Super Cleaning CC</strong><span>Cape Cod, Massachusetts</span></div>
           </a>
-          <p class="footer-desc">Over 20 years of trusted cleaning services across Cape Cod. Residential, vacation rentals, Airbnbs, and commercial spaces — all cleaned with care and a personal touch.</p>
+          <p class="footer-desc">Over 20 years of trusted cleaning services across Cape Cod. Residential, vacation rentals, Airbnbs, and commercial spaces, all cleaned with care and a personal touch.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/supercleaning.cc" target="_blank"><i data-lucide="instagram"></i></a>
             <a href="#"><i data-lucide="search"></i></a>
@@ -832,7 +984,7 @@
         <div class="footer-col"><h5>Areas Served</h5><ul><li><a href="#contact">North Falmouth</a></li><li><a href="#contact">Falmouth, MA</a></li><li><a href="#contact">Barnstable</a></li><li><a href="#contact">Sandwich</a></li><li><a href="#contact">All of Cape Cod</a></li></ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Super Cleaning CC. All rights reserved. North Falmouth, MA.</span>
+        <span>© <span id="footerYear"></span> Super Cleaning CC. All rights reserved. North Falmouth, MA.</span>
         <div style="display:flex;gap:20px;"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
       </div>
     </div>
@@ -905,8 +1057,13 @@
       centeredSlides: true,
       spaceBetween: 24,
       loop: true,
-      speed: 700,
-      autoplay: { delay: 3200, disableOnInteraction: false },
+      speed: 3500,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+        waitForTransition: false,
+      },
       pagination: { el: '.gallery-swiper .swiper-pagination', clickable: true },
     });
 
@@ -946,7 +1103,7 @@
       </ul>
       <hr class="svc-popup-divider" />
       <div class="svc-popup-info">
-        <div class="svc-popup-row"><i data-lucide="map-pin"></i> <span>North Falmouth, MA — All Cape Cod</span></div>
+        <div class="svc-popup-row"><i data-lucide="map-pin"></i> <span>North Falmouth, MA · All Cape Cod</span></div>
         <div class="svc-popup-row"><i data-lucide="credit-card"></i> <span>Venmo and Zelle accepted</span></div>
         <div class="svc-popup-row"><i data-lucide="instagram"></i> <strong>@supercleaning.cc</strong></div>
       </div>
@@ -956,6 +1113,7 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     lucide.createIcons();
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
 
     // ENHANCE ALL PILL BUTTONS with animated arrow circle
     const arrowSVG = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
