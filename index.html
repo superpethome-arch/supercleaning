@@ -142,12 +142,7 @@
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.22); color: white; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; letter-spacing: .3px; }
     .hero-title { font-size: clamp(36px,5vw,58px); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
     .hero-title em { font-style: normal; color: #FF9099; }
-    .hero-title .word { display: inline-block; opacity: 0; filter: blur(14px); letter-spacing: .35em; transform: scaleX(1.08); animation: wordReveal .65s cubic-bezier(.22,1,.36,1) forwards; }
-    @keyframes wordReveal {
-      0%   { opacity: 0; filter: blur(14px); letter-spacing: .35em; transform: scaleX(1.08); }
-      60%  { opacity: 1; filter: blur(2px);  letter-spacing: .02em; transform: scaleX(1.01); }
-      100% { opacity: 1; filter: blur(0);    letter-spacing: -0.02em; transform: scaleX(1); }
-    }
+    .hero-title .word { display: inline; }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,.78); max-width: 480px; margin-bottom: 36px; line-height: 1.7; font-weight: 400; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero-image-col { display: flex; flex-direction: column; gap: 0; }
@@ -474,7 +469,7 @@
       /* Hero — center everything, bigger image */
       .hero-content { text-align: center; }
       .hero-title { font-size: clamp(30px,9vw,46px); letter-spacing: -0.5px; line-height: 1.12; }
-      .hero-title .word { letter-spacing: inherit; }
+
       .hero-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 16px; }
       .hero-sub { font-size: 14px; margin: 0 auto 24px; max-width: 400px; }
       .hero-actions { flex-wrap: wrap; gap: 8px; justify-content: center; }
