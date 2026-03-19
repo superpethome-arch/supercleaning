@@ -135,6 +135,12 @@
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.22); color: white; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; letter-spacing: .3px; }
     .hero-title { font-size: clamp(36px,5vw,58px); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
     .hero-title em { font-style: normal; color: #FF9099; }
+    .hero-title .word { display: inline-block; opacity: 0; filter: blur(14px); letter-spacing: .35em; transform: scaleX(1.08); animation: wordReveal .65s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes wordReveal {
+      0%   { opacity: 0; filter: blur(14px); letter-spacing: .35em; transform: scaleX(1.08); }
+      60%  { opacity: 1; filter: blur(2px);  letter-spacing: .02em; transform: scaleX(1.01); }
+      100% { opacity: 1; filter: blur(0);    letter-spacing: -0.02em; transform: scaleX(1); }
+    }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,.78); max-width: 480px; margin-bottom: 36px; line-height: 1.7; font-weight: 400; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero-image-col { display: flex; flex-direction: column; gap: 0; }
@@ -454,7 +460,9 @@
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-badge">📍 North Falmouth, MA &nbsp; Cape Cod</div>
-        <h1 class="hero-title">Cape Cod's Most <em>Trusted</em> Cleaning Service</h1>
+        <h1 class="hero-title">
+          <span class="word" style="animation-delay:.1s">Cape</span>&#32;<span class="word" style="animation-delay:.22s">Cod's</span>&#32;<span class="word" style="animation-delay:.34s">Most</span>&#32;<span class="word" style="animation-delay:.46s"><em>Trusted</em></span>&#32;<span class="word" style="animation-delay:.58s">Cleaning</span>&#32;<span class="word" style="animation-delay:.70s">Service</span>
+        </h1>
         <p class="hero-sub">Over 20 years keeping Cape Cod homes spotless. From cozy residences to vacation rentals and Airbnbs. Reliable, detail-oriented, and always personal.</p>
         <div class="hero-actions">
           <a href="#contact" class="neon-btn neon-solid neon-lg">Get a Free Quote</a>
