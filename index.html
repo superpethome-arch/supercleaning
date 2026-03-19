@@ -23,42 +23,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Work Sans', Arial, sans-serif; color: var(--near-black); background: var(--white); line-height: 1.6; }
 
-    /* PRELOADER */
-    #preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--near-black);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 6px; padding: 40px;
-      transition: opacity .6s ease, visibility .6s ease;
-    }
-    #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .vcr-logo { font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 28px; opacity: 0; animation: fadeUp .5s ease forwards; animation-delay: .1s; }
-    .vcr-line { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 12px; overflow: hidden; }
-    .vcr-word { overflow: hidden; display: inline-block; }
-    .vcr-word span { display: inline-block; transform: translateY(110%); animation: slideUp .65s cubic-bezier(.22,1,.36,1) forwards; }
-    .vcr-line:nth-child(2) .vcr-word:nth-child(1) span { animation-delay: .28s; }
-    .vcr-line:nth-child(2) .vcr-word:nth-child(2) span { animation-delay: .42s; }
-    .vcr-line:nth-child(2) .vcr-word:nth-child(3) span { animation-delay: .56s; }
-    .vcr-line:nth-child(2) .vcr-word:nth-child(4) span { animation-delay: .70s; }
-    .vcr-line:nth-child(3) .vcr-word:nth-child(1) span { animation-delay: .84s; }
-    .vcr-line:nth-child(3) .vcr-word:nth-child(2) span { animation-delay: .98s; }
-    .vcr-line:nth-child(3) .vcr-word:nth-child(3) span { animation-delay: 1.12s; }
-    .vcr-line:nth-child(4) .vcr-word:nth-child(1) span { animation-delay: 1.26s; }
-    .vcr-line:nth-child(4) .vcr-word:nth-child(2) span { animation-delay: 1.40s; }
-    .vcr-line-1 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: white; letter-spacing: -1px; }
-    .vcr-line-2 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: white; letter-spacing: -1px; }
-    .vcr-line-3 { font-size: clamp(28px,6vw,68px); font-weight: 800; color: var(--red); letter-spacing: -1px; }
-    .vcr-greeting { display: flex; align-items: center; gap: 10px; margin-top: 28px; opacity: 0; animation: fadeUp .4s ease forwards; animation-delay: 2.2s; max-width: calc(100vw - 80px); overflow: hidden; }
-    .vcr-greeting-wave { font-size: 24px; display: inline-block; transform-origin: 70% 80%; animation: wave 1.6s ease infinite; animation-delay: 2.5s; flex-shrink: 0; }
-    .vcr-greeting-text { font-size: clamp(13px,2.2vw,17px); font-weight: 500; color: rgba(255,255,255,.75); overflow: hidden; white-space: nowrap; width: 0; max-width: calc(100vw - 100px); border-right: 2px solid var(--red); animation: typing 1.6s steps(42,end) forwards, blink .6s step-end 8; animation-delay: 2.4s, 2.4s; }
-    .vcr-bar { width: 0; height: 2px; background: var(--red); margin-top: 24px; border-radius: 2px; animation: expandBar .8s ease forwards; animation-delay: 1.65s; box-shadow: 0 0 10px rgba(206,44,56,.6); }
-    .vcr-sub { margin-top: 20px; font-size: 14px; font-weight: 500; color: var(--gray-text); letter-spacing: 1px; opacity: 0; animation: fadeUp .5s ease forwards; animation-delay: 1.9s; }
-    @keyframes slideUp { to { transform: translateY(0); } }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes expandBar { to { width: 120px; } }
-    @keyframes typing { from { width: 0; } to { width: 42ch; } }
-    @keyframes blink { 50% { border-color: transparent; } }
-    @keyframes wave { 0%,100%{transform:rotate(0deg);} 20%{transform:rotate(18deg);} 40%{transform:rotate(-8deg);} 60%{transform:rotate(14deg);} 80%{transform:rotate(-4deg);} }
 
     /* TUBELIGHT NAVBAR */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 2200; padding: 14px 24px; transition: padding .3s, background .35s, border-color .35s, backdrop-filter .35s; }
@@ -609,32 +573,6 @@
 </head>
 <body>
 
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <div class="vcr-logo"><img src="logo.png" alt="Super Cleaning CC" style="height:36px;width:auto;vertical-align:middle;margin-right:8px;border-radius:6px;background:#fff;padding:2px;"> Super Cleaning CC</div>
-    <div class="vcr-line vcr-line-1">
-      <div class="vcr-word"><span>🏖️</span></div>
-      <div class="vcr-word"><span>Cape</span></div>
-      <div class="vcr-word"><span>Cod's</span></div>
-      <div class="vcr-word"><span>Most</span></div>
-    </div>
-    <div class="vcr-line vcr-line-2">
-      <div class="vcr-word"><span>Trusted</span></div>
-      <div class="vcr-word"><span>Cleaning</span></div>
-      <div class="vcr-word"><span>🧹</span></div>
-    </div>
-    <div class="vcr-line vcr-line-3">
-      <div class="vcr-word"><span>⭐</span></div>
-      <div class="vcr-word"><span>Service.</span></div>
-    </div>
-    <div class="vcr-greeting">
-      <span class="vcr-greeting-wave">👋</span>
-      <span class="vcr-greeting-text">Life's too short to clean your own home.</span>
-    </div>
-    <div class="vcr-bar"></div>
-    <div class="vcr-sub">📍 North Falmouth, MA · Since 2004</div>
-  </div>
-
   <!-- NAVBAR -->
   <nav id="navbar">
     <div class="nav-inner">
@@ -1053,12 +991,6 @@
   </div>
 
   <script>
-    // PRELOADER
-    const preloader = document.getElementById('preloader');
-    window.addEventListener('load', () => {
-      setTimeout(() => preloader.classList.add('hidden'), 4600);
-    });
-
     // TUBELIGHT NAVBAR
     const navbar = document.getElementById('navbar');
     const tlLinks = document.querySelectorAll('.tubelight-link');
