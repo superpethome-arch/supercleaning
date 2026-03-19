@@ -205,9 +205,10 @@
     .gallery-3d-wrap { width: 100%; height: 100%; perspective: 2000px; display: flex; align-items: center; justify-content: center; }
     .gallery-rotator { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
     .gallery-card { position: absolute; width: 260px; height: 340px; left: 50%; top: 50%; margin-left: -130px; margin-top: -170px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: var(--dark-nav); box-shadow: 0 20px 60px rgba(0,0,0,.5); transition: opacity .3s linear; }
-    .gallery-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(145deg, #3F444B, #2a2d31); position: relative; }
-    .gallery-card-placeholder { font-size: 56px; margin-bottom: 12px; opacity: .45; }
-    .gallery-card-label { color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .gallery-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(145deg, #3F444B, #2a2d31); position: relative; overflow: hidden; }
+    .gallery-card-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-card-placeholder { font-size: 56px; margin-bottom: 12px; opacity: .45; position: relative; z-index: 1; }
+    .gallery-card-label { color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; position: relative; z-index: 1; }
     .gallery-card-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); color: white; }
     .gallery-card-footer strong { font-size: 15px; display: block; }
     .gallery-card-footer span { font-size: 12px; color: rgba(255,255,255,.6); }
@@ -552,11 +553,11 @@
         </div>
         <div class="gallery-3d-wrap">
           <div class="gallery-rotator" id="galleryRotator">
-            <div class="gallery-card" data-index="0"><div class="gallery-card-inner"><div class="gallery-card-placeholder">🏡</div><div class="gallery-card-label">Residential</div></div><div class="gallery-card-footer"><strong>Home Cleaning</strong><span>Falmouth, MA</span></div></div>
-            <div class="gallery-card" data-index="1"><div class="gallery-card-inner"><div class="gallery-card-placeholder">🏖️</div><div class="gallery-card-label">Vacation Rental</div></div><div class="gallery-card-footer"><strong>Airbnb Turnover</strong><span>Barnstable, MA</span></div></div>
-            <div class="gallery-card" data-index="2"><div class="gallery-card-inner"><div class="gallery-card-placeholder">✨</div><div class="gallery-card-label">Deep Clean</div></div><div class="gallery-card-footer"><strong>Before &amp; After</strong><span>Sandwich, MA</span></div></div>
-            <div class="gallery-card" data-index="3"><div class="gallery-card-inner"><div class="gallery-card-placeholder">🌿</div><div class="gallery-card-label">Seasonal Open</div></div><div class="gallery-card-footer"><strong>Spring Opening</strong><span>Mashpee, MA</span></div></div>
-            <div class="gallery-card" data-index="4"><div class="gallery-card-inner"><div class="gallery-card-placeholder">🏢</div><div class="gallery-card-label">Commercial</div></div><div class="gallery-card-footer"><strong>Office Cleaning</strong><span>Bourne, MA</span></div></div>
+            <div class="gallery-card" data-index="0"><div class="gallery-card-inner"><img src="1.jpg" alt="Home Cleaning"></div><div class="gallery-card-footer"><strong>Home Cleaning</strong><span>Falmouth, MA</span></div></div>
+            <div class="gallery-card" data-index="1"><div class="gallery-card-inner"><img src="2.jpg" alt="Airbnb Turnover"></div><div class="gallery-card-footer"><strong>Airbnb Turnover</strong><span>Barnstable, MA</span></div></div>
+            <div class="gallery-card" data-index="2"><div class="gallery-card-inner"><img src="3.jpg" alt="Deep Clean"></div><div class="gallery-card-footer"><strong>Before &amp; After</strong><span>Sandwich, MA</span></div></div>
+            <div class="gallery-card" data-index="3"><div class="gallery-card-inner"><img src="4.jpg" alt="Spring Opening"></div><div class="gallery-card-footer"><strong>Spring Opening</strong><span>Mashpee, MA</span></div></div>
+            <div class="gallery-card" data-index="4"><div class="gallery-card-inner"><img src="5.png" alt="Commercial Cleaning"></div><div class="gallery-card-footer"><strong>Office Cleaning</strong><span>Bourne, MA</span></div></div>
             <div class="gallery-card" data-index="5"><div class="gallery-card-inner"><div class="gallery-card-placeholder">⚡</div><div class="gallery-card-label">Emergency</div></div><div class="gallery-card-footer"><strong>Same-Day Clean</strong><span>North Falmouth, MA</span></div></div>
           </div>
         </div>
