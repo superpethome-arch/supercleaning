@@ -78,9 +78,33 @@
     .tubelight-link.active::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--red); border-radius: 0 0 4px 4px; box-shadow: 0 0 8px 2px rgba(206,44,56,.7), 0 0 20px 4px rgba(206,44,56,.35), 0 0 40px 8px rgba(206,44,56,.15); }
     .tubelight-link.active::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 20px; background: radial-gradient(ellipse at top, rgba(206,44,56,.22) 0%, transparent 70%); border-radius: 50%; }
     .tl-icon { font-size: 16px; }
-    @media (max-width: 700px) { .tl-text { display: none; } }
+    .tl-icon svg { width: 16px; height: 16px; stroke-width: 2; }
+    @media (max-width: 700px) and (min-width: 641px) { .tl-text { display: none; } }
     @media (min-width: 701px) { .tl-icon { display: none; } }
-    @media (max-width: 520px) { .nav-logo-text { display: none; } .tubelight-link { padding: 8px 12px; } }
+
+    /* HAMBURGER BUTTON */
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5.5px; width: 42px; height: 42px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; cursor: pointer; flex-shrink: 0; }
+    .nav-hamburger span { display: block; width: 18px; height: 2px; background: white; border-radius: 2px; transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* MOBILE FULL-SCREEN MENU */
+    .nav-mobile-menu { position: fixed; inset: 0; z-index: 998; background: var(--near-black); display: flex; flex-direction: column; padding: 88px 28px 36px; transform: translateY(-100%); opacity: 0; transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .3s ease; pointer-events: none; }
+    .nav-mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .nav-mobile-links { display: flex; flex-direction: column; gap: 0; flex: 1; }
+    .nav-mobile-link { display: flex; align-items: center; gap: 16px; padding: 18px 0; font-size: 21px; font-weight: 700; color: rgba(255,255,255,.72); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.07); letter-spacing: -0.3px; transition: color .2s, padding-left .25s cubic-bezier(.4,0,.2,1); }
+    .nav-mobile-link svg { width: 22px; height: 22px; color: var(--red); flex-shrink: 0; stroke-width: 1.75; }
+    .nav-mobile-link:hover, .nav-mobile-link.active { color: white; padding-left: 8px; }
+    .nav-mobile-link.active svg { color: #FF9099; }
+    .nav-mobile-cta { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .nav-mobile-cta .neon-btn { width: 100%; justify-content: center; font-size: 15px; padding: 13px 54px 13px 24px; }
+    .nav-mobile-footer { margin-top: 18px; font-size: 12px; color: rgba(255,255,255,.28); text-align: center; letter-spacing: .4px; }
+
+    @media (max-width: 640px) {
+      .tubelight-pill { display: none; }
+      .nav-hamburger { display: flex; }
+    }
 
     /* NEON BUTTON */
     /* ANIMATED PILL BUTTONS */
@@ -429,7 +453,7 @@
       .hero { padding: 100px 20px 64px; }
       .hero-inner { grid-template-columns: 1fr; gap: 36px; }
       .hero-image-col { order: -1; }
-      .hero-image-wrap { aspect-ratio: 16/9; max-height: 300px; border-radius: 18px; }
+      .hero-image-wrap { aspect-ratio: 4/3; max-height: none; border-radius: 20px; }
       .hero-stats { justify-content: space-around; padding: 14px 16px; }
       .hero-sub { font-size: 15px; max-width: 100%; }
       .hero-title { font-size: clamp(32px,7vw,52px); }
@@ -480,29 +504,34 @@
       .gallery-section { padding: 56px 0; }
 
       /* Navbar */
-      nav { padding: 10px 12px; }
-      .tubelight-pill { gap: 0; padding: 4px; }
-      .tubelight-link { padding: 8px 10px; font-size: 13px; }
-      .nav-logo-text { display: none; }
+      nav { padding: 10px 16px; }
+      nav.scrolled { padding: 8px 16px; }
 
-      /* Hero */
-      .hero-title { font-size: clamp(27px,8.5vw,44px); letter-spacing: -.5px; }
-      .hero-sub { font-size: 14px; margin-bottom: 24px; }
-      .hero-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 18px; }
-      .hero-actions { flex-wrap: wrap; gap: 8px; }
-      .hero-stats { flex-wrap: wrap; gap: 10px; padding: 12px; }
+      /* Hero — center everything, bigger image */
+      .hero-content { text-align: center; }
+      .hero-title { font-size: clamp(30px,9vw,46px); letter-spacing: -0.5px; line-height: 1.12; }
+      .hero-title .word { letter-spacing: inherit; }
+      .hero-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 16px; }
+      .hero-sub { font-size: 14px; margin: 0 auto 24px; max-width: 400px; }
+      .hero-actions { flex-wrap: wrap; gap: 8px; justify-content: center; }
+      .hero-image-wrap { aspect-ratio: 4/3; max-height: none; border-radius: 20px; }
+      .hero-image-badge { font-size: 12px; padding: 8px 12px; gap: 6px; }
+      .hero-stats { flex-wrap: wrap; gap: 10px; padding: 12px 16px; }
       .hero-stat { flex: 1; min-width: 70px; }
       .hero-stat strong { font-size: 22px; }
       .hero-stat-divider { display: none; }
-      .hero-image-wrap { aspect-ratio: 16/10; max-height: 220px; }
-      .hero-image-badge { font-size: 12px; padding: 8px 12px; gap: 6px; }
-      .avatar-circles-row { flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+      .avatar-circles-row { flex-wrap: wrap; gap: 8px; margin-top: 20px; justify-content: center; }
       .avatar-circles-text { font-size: 13px; }
 
-      /* Services */
-      .services-grid .service-card { width: 240px; padding: 22px 18px; }
+      /* Services — 1 card full-width, carousel desabilitado */
+      .services-carousel-wrap { margin: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .services-carousel-wrap::-webkit-scrollbar { display: none; }
       .services-carousel-wrap::before,
-      .services-carousel-wrap::after { width: 40px; }
+      .services-carousel-wrap::after { display: none; }
+      .services-grid { animation: none !important; width: max-content; padding: 8px 16px; gap: 14px; }
+      .services-grid .service-card { width: calc(100vw - 48px); max-width: 360px; flex-shrink: 0; padding: 24px 20px; }
+      /* oculta cards duplicados no mobile (loop desnecessário) */
+      .services-grid .service-card[aria-hidden="true"] { display: none; }
 
       /* About */
       .adriana-photo-wrap { max-width: 100%; aspect-ratio: 3/4; }
@@ -627,8 +656,27 @@
       <div class="nav-cta-wrap">
         <a href="#contact" class="neon-btn neon-solid neon-sm">Get a Quote</a>
       </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- MOBILE FULL-SCREEN MENU -->
+  <div class="nav-mobile-menu" id="navMobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <nav class="nav-mobile-links">
+      <a href="#home"         class="nav-mobile-link" data-mob-section="home"><i data-lucide="home"></i> Home</a>
+      <a href="#services"     class="nav-mobile-link" data-mob-section="services"><i data-lucide="sparkles"></i> Services</a>
+      <a href="#about"        class="nav-mobile-link" data-mob-section="about"><i data-lucide="user"></i> About</a>
+      <a href="#testimonials" class="nav-mobile-link" data-mob-section="testimonials"><i data-lucide="star"></i> Reviews</a>
+      <a href="#faq"          class="nav-mobile-link" data-mob-section="faq"><i data-lucide="help-circle"></i> FAQ</a>
+      <a href="#contact"      class="nav-mobile-link" data-mob-section="contact"><i data-lucide="mail"></i> Contact</a>
+    </nav>
+    <div class="nav-mobile-cta">
+      <a href="#contact" class="neon-btn neon-solid neon-lg" id="mobCtaBtn">Get a Free Quote</a>
+      <div class="nav-mobile-footer">📍 North Falmouth, MA · Cape Cod</div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -795,28 +843,28 @@
     <div class="swiper gallery-swiper" id="gallerySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="1.jpg" alt="Home Cleaning">
-          <div class="gallery-slide-caption"><strong>Home Cleaning</strong><span>Falmouth, MA</span></div>
+          <img class="gallery-slide-img" src="1.jpg" alt="Residential Cleaning — Falmouth, MA">
+          <div class="gallery-slide-caption"><strong>Residential Cleaning</strong><span>Hardwood floors, Falmouth, MA</span></div>
         </div>
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="2.jpg" alt="Airbnb Turnover">
-          <div class="gallery-slide-caption"><strong>Airbnb Turnover</strong><span>Barnstable, MA</span></div>
+          <img class="gallery-slide-img" src="2.jpg" alt="Vacation Home Detail Clean — Barnstable, MA">
+          <div class="gallery-slide-caption"><strong>Vacation Home Detail Clean</strong><span>Living room, Barnstable, MA</span></div>
         </div>
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="3.jpg" alt="Deep Clean">
-          <div class="gallery-slide-caption"><strong>Before &amp; After</strong><span>Sandwich, MA</span></div>
+          <img class="gallery-slide-img" src="3.jpg" alt="Deep Clean — Mirrors and Surfaces">
+          <div class="gallery-slide-caption"><strong>Deep Clean</strong><span>Mirrors and surfaces, Sandwich, MA</span></div>
         </div>
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="4.jpg" alt="Spring Opening">
-          <div class="gallery-slide-caption"><strong>Spring Opening</strong><span>Mashpee, MA</span></div>
+          <img class="gallery-slide-img" src="4.jpg" alt="Kitchen Deep Clean — Mashpee, MA">
+          <div class="gallery-slide-caption"><strong>Kitchen Deep Clean</strong><span>Oven and appliances, Mashpee, MA</span></div>
         </div>
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="5.png" alt="Office Cleaning">
-          <div class="gallery-slide-caption"><strong>Office Cleaning</strong><span>Bourne, MA</span></div>
+          <img class="gallery-slide-img" src="5.png" alt="Super Cleaning CC Team">
+          <div class="gallery-slide-caption"><strong>Trusted for 20+ Years</strong><span>The Super Cleaning CC team</span></div>
         </div>
         <div class="swiper-slide" style="position:relative;">
-          <img class="gallery-slide-img" src="7.jpeg" alt="Our Team">
-          <div class="gallery-slide-caption"><strong>Our Team</strong><span>Cape Cod, MA</span></div>
+          <img class="gallery-slide-img" src="7.jpeg" alt="Our Full Team — Cape Cod, MA">
+          <div class="gallery-slide-caption"><strong>Our Full Team</strong><span>North Falmouth, MA</span></div>
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -1033,6 +1081,33 @@
         link.classList.add('active');
       });
     });
+
+    // HAMBURGER MOBILE MENU
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobileMenu');
+    const mobLinks = document.querySelectorAll('.nav-mobile-link');
+    const mobCta = document.getElementById('mobCtaBtn');
+
+    function openMobileMenu() {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // re-run lucide on mobile menu icons
+      if (window.lucide) lucide.createIcons();
+    }
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+    });
+    mobLinks.forEach(link => link.addEventListener('click', () => { closeMobileMenu(); }));
+    mobCta.addEventListener('click', () => { closeMobileMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
 
     // FAQ
     function toggleFaq(btn) {
