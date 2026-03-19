@@ -127,7 +127,7 @@
     .hero-bubble:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -120px; opacity: .04; }
     .hero-bubble:nth-child(2) { width: 200px; height: 200px; bottom: 60px; left: -80px; opacity: .03; }
     .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
-    .hero-image-wrap { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 32px 80px rgba(0,0,0,.5); }
+    .hero-image-wrap { position: relative; border-radius: 24px 24px 0 0; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 32px 80px rgba(0,0,0,.5); }
     .hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-image-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, rgba(12,7,9,.45)); pointer-events: none; }
     .hero-image-badge { position: absolute; bottom: 18px; left: 18px; background: rgba(12,7,9,.75); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 10px 16px; color: white; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; z-index: 2; }
@@ -137,11 +137,12 @@
     .hero-title em { font-style: normal; color: #FF9099; }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,.78); max-width: 480px; margin-bottom: 36px; line-height: 1.7; font-weight: 400; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-stats { display: flex; gap: 32px; margin-top: 48px; }
+    .hero-image-col { display: flex; flex-direction: column; gap: 0; }
+    .hero-stats { display: flex; justify-content: space-around; background: rgba(255,255,255,.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.12); border-top: none; border-radius: 0 0 24px 24px; padding: 18px 24px; }
     .hero-stat { text-align: center; }
-    .hero-stat strong { display: block; font-size: 34px; font-weight: 800; color: white; line-height: 1; letter-spacing: -1px; }
-    .hero-stat span { font-size: 13px; color: rgba(255,255,255,.65); font-weight: 500; }
-    .hero-stat-divider { width: 1px; background: rgba(255,255,255,.18); align-self: stretch; }
+    .hero-stat strong { display: block; font-size: 28px; font-weight: 800; color: white; line-height: 1; letter-spacing: -0.5px; }
+    .hero-stat span { font-size: 12px; color: rgba(255,255,255,.6); font-weight: 500; }
+    .hero-stat-divider { width: 1px; background: rgba(255,255,255,.15); align-self: stretch; }
     .avatar-circles { display: flex; align-items: center; gap: 0; }
     .avatar-circles .av-item { width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.25); background: linear-gradient(135deg, var(--red), var(--red-dark)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; margin-left: -12px; transition: transform .2s; position: relative; z-index: 1; }
     .avatar-circles .av-item:first-child { margin-left: 0; }
@@ -273,7 +274,8 @@
     .personas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
     .persona-card { border: 2px solid #EEEDED; border-radius: 16px; padding: 32px 26px; text-align: center; transition: border-color .3s, transform .3s; }
     .persona-card:hover { border-color: var(--red); transform: translateY(-4px); }
-    .persona-emoji { font-size: 52px; margin-bottom: 16px; display: block; }
+    .persona-emoji { font-size: 52px; margin-bottom: 16px; display: flex; justify-content: center; }
+    .persona-emoji svg { width: 44px; height: 44px; stroke-width: 1.5; color: var(--red); }
     .persona-card h3 { font-size: 18px; font-weight: 700; color: var(--near-black); margin-bottom: 8px; }
     .persona-card .persona-type { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
     .persona-card p { font-size: 14px; color: var(--gray-text); line-height: 1.65; }
@@ -309,6 +311,7 @@
     .contact-info { display: flex; flex-direction: column; gap: 28px; }
     .contact-method { display: flex; gap: 16px; align-items: flex-start; }
     .contact-method-icon { width: 50px; height: 50px; background: var(--red-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .contact-method-icon svg { width: 22px; height: 22px; stroke-width: 1.75; color: var(--red); }
     .contact-method-text strong { display: block; font-size: 14px; font-weight: 700; color: var(--near-black); margin-bottom: 4px; }
     .contact-method-text a { font-size: 15px; color: var(--red); text-decoration: none; font-weight: 500; }
     .contact-method-text a:hover { text-decoration: underline; }
@@ -458,6 +461,12 @@
           </div>
           <div class="avatar-circles-text"><strong>200+ happy clients</strong> across Cape Cod</div>
         </div>
+      </div>
+      <div class="hero-image-col">
+        <div class="hero-image-wrap">
+          <img src="7.jpeg" alt="Super Cleaning CC team — Cape Cod, MA" />
+          <div class="hero-image-badge"><i data-lucide="users"></i> Our Team · Cape Cod, MA</div>
+        </div>
         <div class="hero-stats">
           <div class="hero-stat"><strong>20+</strong><span>Years of Experience</span></div>
           <div class="hero-stat-divider"></div>
@@ -465,10 +474,6 @@
           <div class="hero-stat-divider"></div>
           <div class="hero-stat"><strong>4.9★</strong><span>Google Rating</span></div>
         </div>
-      </div>
-      <div class="hero-image-wrap">
-        <img src="7.jpeg" alt="Super Cleaning CC team — Cape Cod, MA" />
-        <div class="hero-image-badge"><i data-lucide="users"></i> Our Team · Cape Cod, MA</div>
       </div>
     </div>
   </section>
@@ -642,9 +647,9 @@
         <p class="section-sub" style="margin:0 auto;text-align:center;">Whether you live here year-round or visit every summer, we have a service for your lifestyle.</p>
       </div>
       <div class="personas-grid">
-        <div class="persona-card"><span class="persona-emoji">👩‍💼</span><div class="persona-type">Residential</div><h3>The Busy Homeowner</h3><p>You love a clean home but life is hectic. You need a reliable team who shows up on schedule and you never have to think about again.</p><div class="persona-needs"><span class="persona-need">Regular Schedule</span><span class="persona-need">Consistent Quality</span><span class="persona-need">Trusted Access</span></div></div>
-        <div class="persona-card"><span class="persona-emoji">🏡</span><div class="persona-type">Vacation Rental</div><h3>The Summer Property Owner</h3><p>You own a Cape Cod property that needs to be perfect for every guest rotation. Fast turnovers, impeccable standards, zero stress.</p><div class="persona-needs"><span class="persona-need">Guest-Ready</span><span class="persona-need">Flexible Timing</span><span class="persona-need">Airbnb Ready</span></div></div>
-        <div class="persona-card"><span class="persona-emoji">🏨</span><div class="persona-type">B&amp;B / Short-Term Rental</div><h3>The Airbnb Host</h3><p>Reviews are your business. You need a cleaning team as invested in your guest experience as you are — fast and available on weekends.</p><div class="persona-needs"><span class="persona-need">5-Star Standards</span><span class="persona-need">Weekend Ready</span><span class="persona-need">Emergency Cover</span></div></div>
+        <div class="persona-card"><span class="persona-emoji"><i data-lucide="house"></i></span><div class="persona-type">Residential</div><h3>The Busy Homeowner</h3><p>You love a clean home but life is hectic. You need a reliable team who shows up on schedule and you never have to think about again.</p><div class="persona-needs"><span class="persona-need">Regular Schedule</span><span class="persona-need">Consistent Quality</span><span class="persona-need">Trusted Access</span></div></div>
+        <div class="persona-card"><span class="persona-emoji"><i data-lucide="sun"></i></span><div class="persona-type">Vacation Rental</div><h3>The Summer Property Owner</h3><p>You own a Cape Cod property that needs to be perfect for every guest rotation. Fast turnovers, impeccable standards, zero stress.</p><div class="persona-needs"><span class="persona-need">Guest-Ready</span><span class="persona-need">Flexible Timing</span><span class="persona-need">Airbnb Ready</span></div></div>
+        <div class="persona-card"><span class="persona-emoji"><i data-lucide="star"></i></span><div class="persona-type">B&amp;B / Short-Term Rental</div><h3>The Airbnb Host</h3><p>Reviews are your business. You need a cleaning team as invested in your guest experience as you are — fast and available on weekends.</p><div class="persona-needs"><span class="persona-need">5-Star Standards</span><span class="persona-need">Weekend Ready</span><span class="persona-need">Emergency Cover</span></div></div>
       </div>
     </div>
   </section>
@@ -701,10 +706,10 @@
           <h2 class="section-title">Let's Get Your Home Sparkling</h2>
           <p class="section-sub" style="margin-bottom:36px;">Reach out for a free quote or to schedule your first cleaning. Adriana personally responds to every inquiry.</p>
           <div class="contact-info">
-            <div class="contact-method"><div class="contact-method-icon">📍</div><div class="contact-method-text"><strong>Service Area</strong><span>North Falmouth, MA and all of Cape Cod. Barnstable County, Falmouth, Sandwich and surrounding towns.</span></div></div>
-            <div class="contact-method"><div class="contact-method-icon">📱</div><div class="contact-method-text"><strong>Instagram</strong><a href="https://www.instagram.com/supercleaning.cc" target="_blank">@supercleaning.cc</a></div></div>
-            <div class="contact-method"><div class="contact-method-icon">🕐</div><div class="contact-method-text"><strong>Availability</strong><span>Flexible scheduling including weekends and emergency same-day service.</span></div></div>
-            <div class="contact-method"><div class="contact-method-icon">💳</div><div class="contact-method-text"><strong>Payment</strong><span>Venmo and Zelle accepted.</span></div></div>
+            <div class="contact-method"><div class="contact-method-icon"><i data-lucide="map-pin"></i></div><div class="contact-method-text"><strong>Service Area</strong><span>North Falmouth, MA and all of Cape Cod. Barnstable County, Falmouth, Sandwich and surrounding towns.</span></div></div>
+            <div class="contact-method"><div class="contact-method-icon"><i data-lucide="instagram"></i></div><div class="contact-method-text"><strong>Instagram</strong><a href="https://www.instagram.com/supercleaning.cc" target="_blank">@supercleaning.cc</a></div></div>
+            <div class="contact-method"><div class="contact-method-icon"><i data-lucide="clock"></i></div><div class="contact-method-text"><strong>Availability</strong><span>Flexible scheduling including weekends and emergency same-day service.</span></div></div>
+            <div class="contact-method"><div class="contact-method-icon"><i data-lucide="credit-card"></i></div><div class="contact-method-text"><strong>Payment</strong><span>Venmo and Zelle accepted.</span></div></div>
           </div>
         </div>
         <form class="contact-form" onsubmit="handleSubmit(event)">
