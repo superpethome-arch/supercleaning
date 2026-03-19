@@ -63,7 +63,8 @@
     nav.scrolled { padding: 8px 24px; }
     .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-    .nav-logo-icon { width: 40px; height: 40px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 12px rgba(206,44,56,.35); }
+    .nav-logo-icon { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(206,44,56,.35); background: #fff; }
+    .nav-logo-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .nav-logo-text { line-height: 1.1; }
     .nav-logo-text strong { display: block; font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.3px; }
     .nav-logo-text span { font-size: 10px; color: rgba(255,255,255,.55); letter-spacing: .6px; text-transform: uppercase; font-weight: 500; }
@@ -358,7 +359,7 @@
 
   <!-- PRELOADER -->
   <div id="preloader">
-    <div class="vcr-logo">✨ Super Cleaning CC</div>
+    <div class="vcr-logo"><img src="logo.png" alt="Super Cleaning CC" style="height:36px;width:auto;vertical-align:middle;margin-right:8px;border-radius:6px;background:#fff;padding:2px;"> Super Cleaning CC</div>
     <div class="vcr-line vcr-line-1">
       <div class="vcr-word"><span>🏖️</span></div>
       <div class="vcr-word"><span>Cape</span></div>
@@ -386,7 +387,7 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#home" class="nav-logo">
-        <div class="nav-logo-icon">✨</div>
+        <div class="nav-logo-icon"><img src="logo.png" alt="Super Cleaning CC logo"></div>
         <div class="nav-logo-text">
           <strong>Super Cleaning CC</strong>
           <span>Cape Cod, MA</span>
@@ -703,7 +704,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#home" class="nav-logo" style="text-decoration:none;">
-            <div class="nav-logo-icon">✨</div>
+            <div class="nav-logo-icon"><img src="logo.png" alt="Super Cleaning CC logo"></div>
             <div class="nav-logo-text"><strong>Super Cleaning CC</strong><span>Cape Cod, Massachusetts</span></div>
           </a>
           <p class="footer-desc">Over 20 years of trusted cleaning services across Cape Cod. Residential, vacation rentals, Airbnbs, and commercial spaces — all cleaned with care and a personal touch.</p>
