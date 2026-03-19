@@ -342,25 +342,17 @@
     .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
     .footer-bottom a:hover { color: rgba(255,255,255,.75); }
 
-    /* NOTIFICATION */
-    .notif-wrapper { position: fixed; bottom: 28px; left: 28px; z-index: 2000; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
-    .notif-card { width: 340px; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border: 1px solid rgba(206,44,56,.12); border-radius: 18px; padding: 8px; box-shadow: 0 8px 40px rgba(12,7,9,.18), 0 0 0 1px rgba(255,255,255,.6); pointer-events: all; transform: translateY(20px); opacity: 0; transition: transform 0.5s cubic-bezier(.22,1,.36,1), opacity 0.4s ease; }
-    .notif-card.visible { transform: translateY(0); opacity: 1; }
-    .notif-card.hiding { transform: translateY(12px); opacity: 0; }
-    .notif-header { padding: 10px 12px 6px; }
-    .notif-title { font-size: 13px; font-weight: 700; color: var(--dark-nav); letter-spacing: 0.2px; }
-    .notif-body { display: flex; align-items: flex-start; gap: 12px; padding: 4px 12px 12px; }
-    .notif-avatar-wrap { position: relative; flex-shrink: 0; }
-    .notif-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--red), #A8212B); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 18px; }
-    .notif-online { position: absolute; bottom: 1px; right: 1px; width: 12px; height: 12px; background: #22c55e; border: 2px solid white; border-radius: 50%; }
-    .notif-content { flex: 1; min-width: 0; }
-    .notif-name { font-size: 14px; font-weight: 700; color: var(--near-black); margin-bottom: 2px; }
-    .notif-role { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-    .notif-bubble { background: var(--off-white); border-radius: 10px; border-top-left-radius: 3px; padding: 10px 12px; font-size: 13px; color: var(--dark-nav); line-height: 1.55; margin-bottom: 8px; }
-    .notif-footer { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--gray-text); font-weight: 500; }
-    .notif-check { color: var(--red); font-size: 12px; }
-    .notif-reply { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-text); font-size: 16px; transition: background .2s, color .2s; align-self: center; }
-    .notif-reply:hover { background: var(--red-light); color: var(--red); }
+    /* INSTAGRAM STICKY BUTTON */
+    .ig-sticky { position: fixed; bottom: 28px; left: 28px; z-index: 2000; display: flex; align-items: center; gap: 0; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); border-radius: 50px; box-shadow: 0 8px 32px rgba(131,58,180,.35); transform: translateY(20px); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; overflow: hidden; }
+    .ig-sticky.visible { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .ig-sticky a { display: flex; align-items: center; gap: 10px; padding: 12px 20px 12px 16px; color: white; text-decoration: none; font-family: 'Work Sans', sans-serif; }
+    .ig-sticky-icon { width: 34px; height: 34px; background: rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ig-sticky-icon svg { width: 17px; height: 17px; color: white; }
+    .ig-sticky-text { display: flex; flex-direction: column; line-height: 1.25; }
+    .ig-sticky-text strong { font-size: 13px; font-weight: 700; }
+    .ig-sticky-text span { font-size: 11px; opacity: .85; font-weight: 400; }
+    .ig-sticky-close { position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: var(--near-black); border: 2px solid rgba(255,255,255,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; cursor: pointer; line-height: 1; font-weight: 700; }
+    @media (max-width: 600px) { .ig-sticky-text span { display: none; } }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -765,8 +757,17 @@
     </div>
   </footer>
 
-  <!-- NOTIFICATION WIDGET -->
-  <div class="notif-wrapper" id="notifWrapper"></div>
+  <!-- INSTAGRAM STICKY -->
+  <div class="ig-sticky" id="igSticky">
+    <a href="https://www.instagram.com/supercleaning.cc" target="_blank" rel="noopener">
+      <div class="ig-sticky-icon"><i data-lucide="instagram"></i></div>
+      <div class="ig-sticky-text">
+        <strong>Follow us on Instagram</strong>
+        <span>See our work @supercleaning.cc</span>
+      </div>
+    </a>
+    <div class="ig-sticky-close" id="igStickyClose">✕</div>
+  </div>
 
   <script>
     // PRELOADER
@@ -839,25 +840,16 @@
       if (prog > 0 && prog < 1) { isScrollingGallery = true; autoAngle = prog * 360; updateGallery(autoAngle); clearTimeout(scrollTimer); scrollTimer = setTimeout(() => { isScrollingGallery = false; }, 200); }
     }, { passive: true });
 
-    // NOTIFICATIONS
-    const notifications = [
-      { initials:'S', name:'Sarah M.',  role:'Falmouth, MA',   message:'Adriana and her team are absolutely amazing. Our home has never looked so clean!', time:'2 mins ago',  status:'Read',   online:true  },
-      { initials:'R', name:'Robert K.', role:'Barnstable, MA', message:'Just booked my Airbnb turnover for the summer season. So easy to work with!',      time:'8 mins ago',  status:'Read',   online:false },
-      { initials:'M', name:'Maria D.',  role:'Sandwich, MA',   message:'Called for a same-day emergency and they showed up within hours. Lifesavers!',       time:'14 mins ago', status:'Unread', online:true  },
-      { initials:'J', name:'James T.',  role:'Falmouth, MA',   message:'5 years, consistent, reliable, and thorough every single time.',                     time:'31 mins ago', status:'Read',   online:false },
-    ];
-    let notifIndex = 0;
-    const notifWrapper = document.getElementById('notifWrapper');
-    function showNotification() {
-      const data = notifications[notifIndex++ % notifications.length];
-      const card = document.createElement('div');
-      card.className = 'notif-card';
-      card.innerHTML = `<div class="notif-header"><div class="notif-title">Recent Review</div></div><div class="notif-body"><div class="notif-avatar-wrap"><div class="notif-avatar">${data.initials}</div>${data.online ? '<span class="notif-online"></span>' : ''}</div><div class="notif-content"><div class="notif-name">${data.name}</div><div class="notif-role">${data.role}</div><div class="notif-bubble">${data.message}</div><div class="notif-footer"><span>${data.time}</span><span>·</span><span>${data.status}</span>${data.status==='Read'?'<span class="notif-check">✓</span>':''}</div></div><button class="notif-reply">➤</button></div>`;
-      notifWrapper.appendChild(card);
-      requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
-      setTimeout(() => { card.classList.add('hiding'); card.addEventListener('transitionend', () => card.remove(), { once: true }); }, 5500);
-    }
-    setTimeout(() => { showNotification(); setInterval(showNotification, 9000); }, 3200);
+    // INSTAGRAM STICKY
+    const igSticky = document.getElementById('igSticky');
+    const igClose = document.getElementById('igStickyClose');
+    let igDismissed = false;
+    window.addEventListener('scroll', () => {
+      if (igDismissed) return;
+      if (window.scrollY > 400) igSticky.classList.add('visible');
+      else igSticky.classList.remove('visible');
+    }, { passive: true });
+    igClose.addEventListener('click', () => { igDismissed = true; igSticky.classList.remove('visible'); });
 
     // SCROLL REVEAL
     const revealObserver = new IntersectionObserver(entries => {
