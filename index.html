@@ -61,8 +61,8 @@
     @keyframes wave { 0%,100%{transform:rotate(0deg);} 20%{transform:rotate(18deg);} 40%{transform:rotate(-8deg);} 60%{transform:rotate(14deg);} 80%{transform:rotate(-4deg);} }
 
     /* TUBELIGHT NAVBAR */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 14px 24px; transition: padding .3s; }
-    nav.scrolled { padding: 8px 24px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 2200; padding: 14px 24px; transition: padding .3s, background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.scrolled { padding: 8px 24px; background: rgba(12,7,9,.94); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(206,44,56,.14); }
     .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
     .nav-logo-icon { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(206,44,56,.35); background: #fff; }
@@ -90,7 +90,7 @@
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
     /* MOBILE FULL-SCREEN MENU */
-    .nav-mobile-menu { position: fixed; inset: 0; z-index: 998; background: var(--near-black); display: flex; flex-direction: column; padding: 88px 28px 36px; transform: translateY(-100%); opacity: 0; transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .3s ease; pointer-events: none; }
+    .nav-mobile-menu { position: fixed; inset: 0; z-index: 2100; background: var(--near-black); display: flex; flex-direction: column; padding: 88px 28px 36px; transform: translateY(-100%); opacity: 0; transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .3s ease; pointer-events: none; }
     .nav-mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
     .nav-mobile-links { display: flex; flex-direction: column; gap: 0; flex: 1; }
     .nav-mobile-link { display: flex; align-items: center; gap: 16px; padding: 18px 0; font-size: 21px; font-weight: 700; color: rgba(255,255,255,.72); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.07); letter-spacing: -0.3px; transition: color .2s, padding-left .25s cubic-bezier(.4,0,.2,1); }
@@ -1088,11 +1088,13 @@
     const mobLinks = document.querySelectorAll('.nav-mobile-link');
     const mobCta = document.getElementById('mobCtaBtn');
 
+    const igSticky = document.querySelector('.ig-sticky');
     function openMobileMenu() {
       hamburger.classList.add('open');
       hamburger.setAttribute('aria-expanded', 'true');
       mobileMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (igSticky) igSticky.classList.remove('visible');
       // re-run lucide on mobile menu icons
       if (window.lucide) lucide.createIcons();
     }
@@ -1101,6 +1103,8 @@
       hamburger.setAttribute('aria-expanded', 'false');
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
+      // restore ig sticky if it was visible before
+      if (igSticky && window.scrollY > 400) igSticky.classList.add('visible');
     }
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
