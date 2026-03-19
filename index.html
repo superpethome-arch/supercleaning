@@ -81,23 +81,37 @@
     @media (max-width: 520px) { .nav-logo-text { display: none; } .tubelight-link { padding: 8px 12px; } }
 
     /* NEON BUTTON */
-    .neon-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; font-family: 'Work Sans', sans-serif; font-weight: 700; border-radius: 9999px; border: 1.5px solid transparent; cursor: pointer; text-decoration: none; letter-spacing: 0.1px; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .15s ease; overflow: hidden; white-space: nowrap; }
-    .neon-btn::before { content: ''; position: absolute; top: 0; left: 12.5%; width: 75%; height: 1px; background: linear-gradient(to right, transparent, var(--red-logo) 50%, transparent); opacity: 0; transition: opacity .5s ease; pointer-events: none; }
-    .neon-btn::after { content: ''; position: absolute; bottom: 0; left: 12.5%; width: 75%; height: 1px; background: linear-gradient(to right, transparent, var(--red-logo) 50%, transparent); opacity: .18; transition: opacity .5s ease; pointer-events: none; }
-    .neon-btn:hover::before { opacity: 1; }
-    .neon-btn:hover::after { opacity: .38; }
-    .neon-btn:hover { transform: translateY(-1px); }
-    .neon-btn.neon-default { background: rgba(206,44,56,.05); border-color: rgba(206,44,56,.22); color: var(--near-black); }
-    .neon-btn.neon-default:hover { background: rgba(206,44,56,0); border-color: rgba(206,44,56,.45); }
+    /* ANIMATED PILL BUTTONS */
+    .neon-btn { position: relative; display: inline-flex; align-items: center; font-family: 'Work Sans', sans-serif; font-weight: 600; border-radius: 9999px; border: 1.5px solid transparent; cursor: pointer; text-decoration: none; white-space: nowrap; overflow: hidden; transition: padding .5s cubic-bezier(.4,0,.2,1), background .25s ease, border-color .25s ease; }
+    .neon-btn .btn-text { position: relative; z-index: 1; pointer-events: none; }
+    .neon-btn .btn-circle { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: right .5s cubic-bezier(.4,0,.2,1); }
+    .neon-btn .btn-circle svg { transition: transform .5s cubic-bezier(.4,0,.2,1); pointer-events: none; }
+    .neon-btn:hover .btn-circle svg { transform: rotate(45deg); }
+    /* SOLID — red bg, white text, white circle with red icon */
     .neon-btn.neon-solid { background: var(--red); border-color: transparent; color: var(--white); }
-    .neon-btn.neon-solid:hover { background: var(--red-dark); border-color: rgba(255,255,255,.28); }
-    .neon-btn.neon-solid::before, .neon-btn.neon-solid::after { background: linear-gradient(to right, transparent, rgba(255,255,255,.9) 50%, transparent); }
-    .neon-btn.neon-ghost { background: transparent; border-color: rgba(255,255,255,.45); color: var(--white); }
-    .neon-btn.neon-ghost:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.8); }
-    .neon-btn.neon-ghost::before, .neon-btn.neon-ghost::after { background: linear-gradient(to right, transparent, rgba(255,255,255,.75) 50%, transparent); }
-    .neon-btn.neon-sm { font-size: 13px; padding: 7px 20px; }
-    .neon-btn.neon-md { font-size: 15px; padding: 13px 28px; }
-    .neon-btn.neon-lg { font-size: 16px; padding: 15px 36px; }
+    .neon-btn.neon-solid:hover { background: var(--red-dark); }
+    .neon-btn.neon-solid .btn-circle { background: white; color: var(--red); }
+    /* GHOST — transparent, white border, white text, red circle with white icon */
+    .neon-btn.neon-ghost { background: transparent; border-color: rgba(255,255,255,.4); color: var(--white); }
+    .neon-btn.neon-ghost:hover { border-color: rgba(255,255,255,.75); background: rgba(255,255,255,.06); }
+    .neon-btn.neon-ghost .btn-circle { background: var(--red); color: white; }
+    /* DEFAULT — light red tint, dark text, red circle with white icon */
+    .neon-btn.neon-default { background: var(--red-light); border-color: var(--red-mid); color: var(--near-black); }
+    .neon-btn.neon-default:hover { background: var(--red-mid); }
+    .neon-btn.neon-default .btn-circle { background: var(--red); color: white; }
+    /* SIZES — padding: top right-for-circle bottom left */
+    .neon-btn.neon-sm  { font-size: 13px; padding: 4px 44px 4px 18px; }
+    .neon-btn.neon-sm:hover  { padding: 4px 18px 4px 44px; }
+    .neon-btn.neon-sm  .btn-circle { width: 32px; height: 32px; right: 4px; }
+    .neon-btn.neon-sm:hover  .btn-circle { right: calc(100% - 36px); }
+    .neon-btn.neon-md  { font-size: 15px; padding: 4px 54px 4px 22px; }
+    .neon-btn.neon-md:hover  { padding: 4px 22px 4px 54px; }
+    .neon-btn.neon-md  .btn-circle { width: 40px; height: 40px; right: 4px; }
+    .neon-btn.neon-md:hover  .btn-circle { right: calc(100% - 44px); }
+    .neon-btn.neon-lg  { font-size: 16px; padding: 5px 64px 5px 26px; }
+    .neon-btn.neon-lg:hover  { padding: 5px 26px 5px 64px; }
+    .neon-btn.neon-lg  .btn-circle { width: 46px; height: 46px; right: 5px; }
+    .neon-btn.neon-lg:hover  .btn-circle { right: calc(100% - 51px); }
 
     /* TRUST BAR TICKER */
     .trust-bar { background: var(--near-black); padding: 0; overflow: hidden; border-top: 1px solid rgba(206,44,56,.18); border-bottom: 1px solid rgba(206,44,56,.18); position: relative; }
@@ -364,15 +378,16 @@
     .footer-bottom a:hover { color: rgba(255,255,255,.75); }
 
     /* INSTAGRAM STICKY BUTTON */
-    .ig-sticky { position: fixed; bottom: 28px; left: 28px; z-index: 2000; display: flex; align-items: center; gap: 0; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); border-radius: 50px; box-shadow: 0 8px 32px rgba(131,58,180,.35); transform: translateY(20px); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; overflow: hidden; }
-    .ig-sticky.visible { transform: translateY(0); opacity: 1; pointer-events: all; }
-    .ig-sticky a { display: flex; align-items: center; gap: 10px; padding: 12px 20px 12px 16px; color: white; text-decoration: none; font-family: 'Work Sans', sans-serif; }
-    .ig-sticky-icon { width: 34px; height: 34px; background: rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ig-sticky { position: fixed; bottom: 28px; left: 50%; z-index: 2000; transform: translateX(-50%) translateY(24px); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; }
+    .ig-sticky.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
+    .ig-sticky-pill { display: flex; align-items: center; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); border-radius: 50px; box-shadow: 0 8px 32px rgba(131,58,180,.4); overflow: hidden; }
+    .ig-sticky-pill a { display: flex; align-items: center; gap: 10px; padding: 12px 22px 12px 16px; color: white; text-decoration: none; font-family: 'Work Sans', sans-serif; }
+    .ig-sticky-icon { width: 34px; height: 34px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .ig-sticky-icon svg { width: 17px; height: 17px; color: white; }
     .ig-sticky-text { display: flex; flex-direction: column; line-height: 1.25; }
     .ig-sticky-text strong { font-size: 13px; font-weight: 700; }
     .ig-sticky-text span { font-size: 11px; opacity: .85; font-weight: 400; }
-    .ig-sticky-close { position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: var(--near-black); border: 2px solid rgba(255,255,255,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; cursor: pointer; line-height: 1; font-weight: 700; }
+    .ig-sticky-close { position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; background: var(--near-black); border: 2px solid rgba(255,255,255,.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; cursor: pointer; line-height: 1; font-weight: 700; z-index: 1; }
     @media (max-width: 600px) { .ig-sticky-text span { display: none; } }
 
     /* RESPONSIVE */
@@ -760,6 +775,7 @@
               <option>Seasonal Open / Close</option>
               <option>Commercial Cleaning</option>
               <option>Emergency / Same-Day Cleaning</option>
+              <option>Boat Cleaning</option>
               <option>Not sure — I'd like a recommendation</option>
             </select>
           </div>
@@ -798,15 +814,17 @@
   </footer>
 
   <!-- INSTAGRAM STICKY -->
-  <div class="ig-sticky" id="igSticky">
-    <a href="https://www.instagram.com/supercleaning.cc" target="_blank" rel="noopener">
-      <div class="ig-sticky-icon"><i data-lucide="instagram"></i></div>
-      <div class="ig-sticky-text">
-        <strong>Follow us on Instagram</strong>
-        <span>See our work @supercleaning.cc</span>
-      </div>
-    </a>
-    <div class="ig-sticky-close" id="igStickyClose">✕</div>
+  <div class="ig-sticky" id="igSticky" style="position:fixed;">
+    <div class="ig-sticky-pill">
+      <a href="https://www.instagram.com/supercleaning.cc" target="_blank" rel="noopener">
+        <div class="ig-sticky-icon"><i data-lucide="instagram"></i></div>
+        <div class="ig-sticky-text">
+          <strong>Follow us on Instagram</strong>
+          <span>See our work @supercleaning.cc</span>
+        </div>
+      </a>
+    </div>
+    <button class="ig-sticky-close" id="igStickyClose" aria-label="Dismiss">✕</button>
   </div>
 
   <script>
@@ -926,6 +944,27 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     lucide.createIcons();
+
+    // ENHANCE ALL PILL BUTTONS with animated arrow circle
+    const arrowSVG = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
+    document.querySelectorAll('.neon-btn').forEach(btn => {
+      if (btn.dataset.enhanced) return;
+      btn.dataset.enhanced = '1';
+      // wrap existing content in .btn-text (skip if already has it)
+      const textSpan = document.createElement('span');
+      textSpan.className = 'btn-text';
+      // move all child nodes into text span
+      while (btn.firstChild) textSpan.appendChild(btn.firstChild);
+      // clean up stray arrow glyphs from text
+      textSpan.innerHTML = textSpan.innerHTML.replace(/\s*↗\s*/g, '').replace(/\s*✨\s*/g, '');
+      btn.appendChild(textSpan);
+      // add circle
+      const circle = document.createElement('span');
+      circle.className = 'btn-circle';
+      circle.innerHTML = arrowSVG;
+      btn.appendChild(circle);
+    });
+
     // Services popup
     const overlay = document.getElementById('svcPopupOverlay');
     const openBtn = document.getElementById('svcPopupBtn');
