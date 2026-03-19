@@ -101,19 +101,22 @@
     .neon-btn.neon-default { background: var(--red-light); border-color: var(--red-mid); color: var(--near-black); }
     .neon-btn.neon-default:hover { background: var(--red-mid); }
     .neon-btn.neon-default .btn-circle { background: var(--red); color: white; }
-    /* SIZES — padding: top right-for-circle bottom left */
-    .neon-btn.neon-sm  { font-size: 13px; padding: 4px 44px 4px 18px; }
-    .neon-btn.neon-sm:hover  { padding: 4px 18px 4px 44px; }
-    .neon-btn.neon-sm  .btn-circle { width: 32px; height: 32px; right: 4px; }
-    .neon-btn.neon-sm:hover  .btn-circle { right: calc(100% - 36px); }
-    .neon-btn.neon-md  { font-size: 15px; padding: 4px 54px 4px 22px; }
-    .neon-btn.neon-md:hover  { padding: 4px 22px 4px 54px; }
-    .neon-btn.neon-md  .btn-circle { width: 40px; height: 40px; right: 4px; }
-    .neon-btn.neon-md:hover  .btn-circle { right: calc(100% - 44px); }
-    .neon-btn.neon-lg  { font-size: 16px; padding: 5px 64px 5px 26px; }
-    .neon-btn.neon-lg:hover  { padding: 5px 26px 5px 64px; }
-    .neon-btn.neon-lg  .btn-circle { width: 46px; height: 46px; right: 5px; }
-    .neon-btn.neon-lg:hover  .btn-circle { right: calc(100% - 51px); }
+    /* SIZES — circle ~70% of button height, snug padding */
+    .neon-btn.neon-sm  { font-size: 13px; padding: 6px 38px 6px 16px; }
+    .neon-btn.neon-sm:hover  { padding: 6px 16px 6px 38px; }
+    .neon-btn.neon-sm  .btn-circle { width: 26px; height: 26px; right: 5px; }
+    .neon-btn.neon-sm:hover  .btn-circle { right: calc(100% - 31px); }
+    .neon-btn.neon-sm  .btn-circle svg { width: 11px; height: 11px; }
+    .neon-btn.neon-md  { font-size: 15px; padding: 8px 48px 8px 20px; }
+    .neon-btn.neon-md:hover  { padding: 8px 20px 8px 48px; }
+    .neon-btn.neon-md  .btn-circle { width: 32px; height: 32px; right: 5px; }
+    .neon-btn.neon-md:hover  .btn-circle { right: calc(100% - 37px); }
+    .neon-btn.neon-md  .btn-circle svg { width: 13px; height: 13px; }
+    .neon-btn.neon-lg  { font-size: 16px; padding: 9px 56px 9px 24px; }
+    .neon-btn.neon-lg:hover  { padding: 9px 24px 9px 56px; }
+    .neon-btn.neon-lg  .btn-circle { width: 38px; height: 38px; right: 5px; }
+    .neon-btn.neon-lg:hover  .btn-circle { right: calc(100% - 43px); }
+    .neon-btn.neon-lg  .btn-circle svg { width: 14px; height: 14px; }
 
     /* TRUST BAR TICKER */
     .trust-bar { background: var(--near-black); padding: 0; overflow: hidden; border-top: 1px solid rgba(206,44,56,.18); border-bottom: 1px solid rgba(206,44,56,.18); position: relative; }
