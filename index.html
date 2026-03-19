@@ -482,15 +482,12 @@
       .avatar-circles-row { flex-wrap: wrap; gap: 8px; margin-top: 20px; justify-content: center; }
       .avatar-circles-text { font-size: 13px; }
 
-      /* Services — 1 card full-width, carousel desabilitado */
-      .services-carousel-wrap { margin: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-      .services-carousel-wrap::-webkit-scrollbar { display: none; }
+      /* Services — carrossel automático no mobile */
+      .services-carousel-wrap { margin: 0 -16px; overflow: hidden; }
       .services-carousel-wrap::before,
-      .services-carousel-wrap::after { display: none; }
-      .services-grid { animation: none !important; width: max-content; padding: 8px 16px; gap: 14px; }
-      .services-grid .service-card { width: calc(100vw - 48px); max-width: 360px; flex-shrink: 0; padding: 24px 20px; }
-      /* oculta cards duplicados no mobile (loop desnecessário) */
-      .services-grid .service-card[aria-hidden="true"] { display: none; }
+      .services-carousel-wrap::after { width: 32px; }
+      .services-grid { animation: servicesScroll 28s linear infinite; padding: 8px 16px; gap: 14px; }
+      .services-grid .service-card { width: 240px; flex-shrink: 0; padding: 22px 18px; }
 
       /* About */
       .adriana-photo-wrap { max-width: 100%; aspect-ratio: 3/4; }
