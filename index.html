@@ -263,20 +263,18 @@
     .gallery-blob { pointer-events: none; width: 520px; height: 520px; border-radius: 50%; position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); background: var(--red); filter: blur(110px); opacity: .28; z-index: 1; animation: blobSweep 6s ease-in-out infinite alternate; }
     @keyframes blobSweep { 0% { left: 10%; } 100% { left: 90%; } }
     /* Swiper overrides */
-    .gallery-swiper { width: 100%; padding: 20px 0 48px !important; position: relative; z-index: 3; }
-    .gallery-swiper .swiper-wrapper { transition-timing-function: linear !important; align-items: center; }
-    .gallery-swiper .swiper-slide { width: 300px !important; border-radius: 16px; overflow: hidden; opacity: 0.35; filter: blur(6px); transition: opacity .5s ease, filter .5s ease, transform .5s ease; transform: scale(.92); }
-    .gallery-swiper .swiper-slide-active,
-    .gallery-swiper .swiper-slide-prev,
-    .gallery-swiper .swiper-slide-next { opacity: 1; filter: blur(0); transform: scale(1); }
-    .gallery-swiper .swiper-slide-active { transform: scale(1.06); }
-    .gallery-slide-img { width: 300px; height: 380px; object-fit: cover; display: block; }
+    .gallery-swiper { width: 100%; padding: 20px 0 20px !important; position: relative; z-index: 3; }
+    .gallery-swiper .swiper-wrapper { align-items: center; }
+    .gallery-swiper .swiper-slide { width: 300px !important; border-radius: 16px; overflow: hidden; transition: transform .4s ease; }
+    .gallery-slide-img { width: 300px; height: 360px; object-fit: cover; display: block; }
     .gallery-slide-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 16px 16px; background: linear-gradient(to top, rgba(0,0,0,.85), transparent); color: white; }
     .gallery-slide-caption strong { font-size: 15px; display: block; font-weight: 700; }
     .gallery-slide-caption span { font-size: 12px; color: rgba(255,255,255,.6); }
-    /* Swiper pagination bullets */
-    .gallery-swiper .swiper-pagination-bullet { background: rgba(255,255,255,.35); opacity: 1; }
-    .gallery-swiper .swiper-pagination-bullet-active { background: var(--red); }
+    /* Nav arrows */
+    .gallery-controls { display: flex; gap: 12px; justify-content: center; margin-top: 28px; position: relative; z-index: 5; }
+    .gallery-btn { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.22); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s, transform .15s; flex-shrink: 0; }
+    .gallery-btn:hover { background: var(--red); border-color: var(--red); transform: scale(1.08); }
+    .gallery-btn svg { width: 20px; height: 20px; stroke: white; stroke-width: 2.2; fill: none; }
 
     /* TESTIMONIALS MARQUEE */
     .testimonials { background: var(--off-white); }
@@ -776,6 +774,14 @@
     <div class="gallery-header">
       <div class="section-label">Our Work</div>
       <h2>A Closer Look at What We Do</h2>
+      <div class="gallery-controls">
+        <button class="gallery-btn gallery-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="gallery-btn gallery-next" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
     </div>
     <div class="swiper gallery-swiper" id="gallerySwiper">
       <div class="swiper-wrapper">
@@ -1068,18 +1074,16 @@
       spaceBetween: 24,
       loop: true,
       loopedSlides: 6,
-      speed: 3500,
+      speed: 600,
       grabCursor: true,
-      touchStartPreventDefault: false,
       autoplay: {
-        delay: 0,
+        delay: 3500,
         disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-        waitForTransition: false,
+        pauseOnMouseEnter: true,
       },
-      pagination: { el: '.gallery-swiper .swiper-pagination', clickable: true },
-      on: {
-        touchEnd: function() { this.autoplay.start(); },
+      navigation: {
+        prevEl: '.gallery-prev',
+        nextEl: '.gallery-next',
       },
     });
 
