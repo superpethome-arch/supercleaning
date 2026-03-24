@@ -928,14 +928,21 @@
           </div>
         </div>
         <form class="contact-form" onsubmit="handleSubmit(event)">
+          <!-- Web3Forms -->
+          <input type="hidden" name="access_key" value="caf258a6-e884-4700-8141-38262f87599c" />
+          <input type="hidden" name="subject" value="New Quote Request — Super Cleaning CC" />
+          <input type="hidden" name="from_name" value="Super Cleaning CC Website" />
+          <!-- honeypot anti-spam -->
+          <input type="checkbox" name="botcheck" style="display:none;" />
+
           <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" placeholder="Sarah" required /></div>
-            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Mitchell" required /></div>
+            <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="Sarah" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Mitchell" required /></div>
           </div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="sarah@email.com" required /></div>
-          <div class="form-group"><label>Phone</label><input type="tel" placeholder="(508) 000-0000" /></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="sarah@email.com" required /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="(508) 000-0000" /></div>
           <div class="form-group"><label>Service Needed</label>
-            <select>
+            <select name="service">
               <option value="">Select a service...</option>
               <option>Residential Cleaning (Regular)</option>
               <option>Vacation Home / Airbnb Turnover</option>
@@ -947,8 +954,8 @@
               <option>Not sure? I'd like a recommendation</option>
             </select>
           </div>
-          <div class="form-group"><label>Tell us about your property</label><textarea placeholder="Location, size, frequency, special requirements..."></textarea></div>
-          <button type="submit" class="neon-btn neon-solid neon-md" style="border:none;">Send My Request ✨</button>
+          <div class="form-group"><label>Tell us about your property</label><textarea name="message" placeholder="Location, size, frequency, special requirements..."></textarea></div>
+          <button type="submit" class="neon-btn neon-solid neon-md" style="border:none;">Send My Request</button>
         </form>
       </div>
     </div>
@@ -1058,13 +1065,43 @@
       if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
     }
 
-    // FORM
-    function handleSubmit(e) {
+    // FORM — Web3Forms
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.neon-btn');
-      btn.textContent = 'Message Sent! We will be in touch soon.';
-      btn.style.background = '#2a7a2a';
+      const form = e.target;
+      const btn = form.querySelector('.neon-btn');
+      const originalText = btn.querySelector('.btn-text') ? btn.querySelector('.btn-text').textContent : btn.textContent;
       btn.disabled = true;
+      if (btn.querySelector('.btn-text')) btn.querySelector('.btn-text').textContent = 'Sending...';
+      else btn.textContent = 'Sending...';
+
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (json.success) {
+          if (btn.querySelector('.btn-text')) btn.querySelector('.btn-text').textContent = 'Message sent! We\'ll be in touch soon.';
+          else btn.textContent = 'Message sent! We\'ll be in touch soon.';
+          btn.style.background = '#2a7a2a';
+          form.reset();
+        } else {
+          throw new Error(json.message);
+        }
+      } catch (err) {
+        if (btn.querySelector('.btn-text')) btn.querySelector('.btn-text').textContent = 'Something went wrong. Please try again.';
+        else btn.textContent = 'Something went wrong. Please try again.';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+        setTimeout(() => {
+          if (btn.querySelector('.btn-text')) btn.querySelector('.btn-text').textContent = originalText;
+          else btn.textContent = originalText;
+          btn.style.background = '';
+        }, 4000);
+      }
     }
 
     // SWIPER GALLERY
