@@ -150,11 +150,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/emergency-cleaning",
       "destination": "/#services",
       "permanent": true
