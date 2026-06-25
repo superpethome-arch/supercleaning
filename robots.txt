@@ -1,4 +1,4 @@
-# robots.txt — supercleaning.cc
+# robots.txt — www.supercleaningcc.com
 # Last updated: 2025-06-25
 
 # ──────────────────────────────────────────────
@@ -61,4 +61,4 @@ User-agent: *
 Allow: /
 
 # ──────────────────────────────────────────────
-Sitemap: https://supercleaning.cc/sitemap.xml
+Sitemap: https://www.supercleaningcc.com/sitemap.xml
