@@ -3,62 +3,186 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options",    "value": "nosniff" },
-        { "key": "X-Frame-Options",            "value": "SAMEORIGIN" },
-        { "key": "X-XSS-Protection",           "value": "1; mode=block" },
-        { "key": "Referrer-Policy",            "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy",         "value": "camera=(), microphone=(), geolocation=(self)" },
-        { "key": "Strict-Transport-Security",  "value": "max-age=63072000; includeSubDomains; preload" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self)"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
       ]
     },
     {
       "source": "/lucide.min.js",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*\\.jpg|.*\\.jpeg|.*\\.png|.*\\.webp|.*\\.svg)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
       ]
     }
   ],
   "redirects": [
-    { "source": "/services",                       "destination": "/#services",      "permanent": true },
-    { "source": "/services/:path*",                "destination": "/#services",      "permanent": true },
-    { "source": "/about",                          "destination": "/#about",         "permanent": true },
-    { "source": "/about-us",                       "destination": "/#about",         "permanent": true },
-    { "source": "/contact",                        "destination": "/#contact",       "permanent": true },
-    { "source": "/contact-us",                     "destination": "/#contact",       "permanent": true },
-    { "source": "/quote",                          "destination": "/#contact",       "permanent": true },
-    { "source": "/get-a-quote",                    "destination": "/#contact",       "permanent": true },
-    { "source": "/free-quote",                     "destination": "/#contact",       "permanent": true },
-    { "source": "/booking",                        "destination": "/#contact",       "permanent": true },
-    { "source": "/book",                           "destination": "/#contact",       "permanent": true },
-    { "source": "/schedule",                       "destination": "/#contact",       "permanent": true },
-    { "source": "/faq",                            "destination": "/#faq",           "permanent": true },
-    { "source": "/faqs",                           "destination": "/#faq",           "permanent": true },
-    { "source": "/testimonials",                   "destination": "/#testimonials",  "permanent": true },
-    { "source": "/reviews",                        "destination": "/#testimonials",  "permanent": true },
-    { "source": "/gallery",                        "destination": "/#gallery",       "permanent": true },
-    { "source": "/pricing",                        "destination": "/#contact",       "permanent": true },
-    { "source": "/prices",                         "destination": "/#contact",       "permanent": true },
-    { "source": "/rates",                          "destination": "/#contact",       "permanent": true },
-    { "source": "/blog",                           "destination": "/",               "permanent": true },
-    { "source": "/blog/:path*",                    "destination": "/",               "permanent": true },
-    { "source": "/residential-cleaning",           "destination": "/#services",      "permanent": true },
-    { "source": "/airbnb-cleaning",                "destination": "/#services",      "permanent": true },
-    { "source": "/vacation-home-cleaning",         "destination": "/#services",      "permanent": true },
-    { "source": "/deep-cleaning",                  "destination": "/#services",      "permanent": true },
-    { "source": "/commercial-cleaning",            "destination": "/#services",      "permanent": true },
-    { "source": "/boat-cleaning",                  "destination": "/#services",      "permanent": true },
-    { "source": "/emergency-cleaning",             "destination": "/#services",      "permanent": true },
-    { "source": "/seasonal-cleaning",              "destination": "/#services",      "permanent": true },
-    { "source": "/cape-cod-cleaning",              "destination": "/",               "permanent": true },
-    { "source": "/falmouth-cleaning",              "destination": "/",               "permanent": true },
-    { "source": "/team",                           "destination": "/#about",         "permanent": true },
-    { "source": "/adriana",                        "destination": "/#about",         "permanent": true },
-    { "source": "/home",                           "destination": "/",               "permanent": true }
+    {
+      "source": "/services",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/quote",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/get-a-quote",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/free-quote",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/booking",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/book",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/schedule",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials",
+      "destination": "/#testimonials",
+      "permanent": true
+    },
+    {
+      "source": "/reviews",
+      "destination": "/#testimonials",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "destination": "/#gallery",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/prices",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/rates",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/emergency-cleaning",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/cape-cod-cleaning",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/falmouth-cleaning",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/adriana",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }
