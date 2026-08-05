@@ -157,16 +157,6 @@
       "permanent": true
     },
     {
-      "source": "/cape-cod-cleaning",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/falmouth-cleaning",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/team",
       "destination": "/#about",
       "permanent": true
