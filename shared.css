@@ -114,11 +114,17 @@ nav.scrolled{padding:8px 24px;background:rgba(12,7,9,.97);backdrop-filter:blur(2
 /* FAQ */
 .faq-list{display:flex;flex-direction:column}
 .faq-item{border-bottom:1px solid #EEEDED}
-.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;background:none;border:none;font-size:15px;font-weight:600;color:var(--near-black);cursor:pointer;text-align:left;gap:16px;font-family:'Work Sans',sans-serif}
+.faq-question,.faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;background:none;border:none;font-size:15px;font-weight:600;color:var(--near-black);cursor:pointer;text-align:left;gap:16px;font-family:'Work Sans',sans-serif}
 .faq-icon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .25s;line-height:1}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .32s ease}
-.faq-answer p{font-size:15px;color:var(--gray-text);line-height:1.7;padding-bottom:16px;margin:0}
+.faq-answer,.faq-body{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.faq-answer p,.faq-body p{font-size:15px;color:var(--gray-text);line-height:1.7;padding-bottom:16px;margin:0}
+
+/* perk-card link variant (city pages) */
+a.perk-card{display:flex;flex-direction:column;text-decoration:none;transition:transform .2s,box-shadow .2s}
+a.perk-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1);border-color:var(--red-mid)}
+a.perk-card strong{display:block;font-size:15px;font-weight:700;color:var(--near-black);margin-bottom:6px}
+a.perk-card span{display:block;font-size:14px;color:var(--gray-text);line-height:1.55}
 
 /* CTA box */
 .cta-box{background:var(--near-black);border-radius:20px;padding:48px 40px;text-align:center;position:relative;overflow:hidden}

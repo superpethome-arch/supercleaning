@@ -28,18 +28,22 @@
   var fy = document.getElementById('footerYear');
   if(fy) fy.textContent = new Date().getFullYear();
 
-  // FAQ accordion
-  window.toggleFaq = function(btn){
-    var item = btn.closest('.faq-item');
-    var answer = item.querySelector('.faq-answer');
+  // FAQ accordion — accepts element OR ID string
+  window.toggleFaq = function(btnOrId){
+    var item = (typeof btnOrId === 'string')
+      ? document.getElementById(btnOrId)
+      : btnOrId.closest('.faq-item');
+    if(!item) return;
+    var answer = item.querySelector('.faq-answer, .faq-body');
     var isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(function(i){
       i.classList.remove('open');
-      i.querySelector('.faq-answer').style.maxHeight = null;
+      var a = i.querySelector('.faq-answer, .faq-body');
+      if(a) a.style.maxHeight = null;
     });
     if(!isOpen){
       item.classList.add('open');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
+      if(answer) answer.style.maxHeight = answer.scrollHeight + 'px';
     }
   };
 
