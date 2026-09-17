@@ -170,6 +170,11 @@
       "source": "/home",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/holiday-cleaning-cape-cod",
+      "destination": "/holiday-cleaning",
+      "permanent": true
     }
   ]
 }

@@ -1270,6 +1270,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="hidden" name="from_name" value="Super Cleaning CC Website" />
           <!-- honeypot anti-spam -->
           <input type="checkbox" name="botcheck" style="display:none;" />
+          <!-- UTM / Source tracking (populated by JS) -->
+          <input type="hidden" name="utm_source" id="f_utm_source" />
+          <input type="hidden" name="utm_medium" id="f_utm_medium" />
+          <input type="hidden" name="utm_campaign" id="f_utm_campaign" />
+          <input type="hidden" name="utm_content" id="f_utm_content" />
+          <input type="hidden" name="referrer_page" id="f_referrer" />
 
           <div class="form-row">
             <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="Sarah" required /></div>
@@ -1283,6 +1289,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option>Residential Cleaning (Regular)</option>
               <option>Vacation Home / Airbnb Turnover</option>
               <option>Deep Cleaning</option>
+              <option>Move-In / Move-Out Cleaning</option>
+              <option>Post-Construction Cleaning</option>
+              <option>Recurring Cleaning (Weekly / Bi-Weekly)</option>
+              <option>Holiday Cleaning</option>
               <option>Seasonal Open / Close</option>
               <option>Commercial Cleaning</option>
               <option>Emergency / Same-Day Cleaning</option>
@@ -1314,7 +1324,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
           </div>
         </div>
-        <div class="footer-col"><h5>Services</h5><ul><li><a href="/airbnb-cleaning">Airbnb Cleaning</a></li><li><a href="/vacation-home-cleaning">Vacation Home Cleaning</a></li><li><a href="/residential-cleaning">Residential Cleaning</a></li><li><a href="/deep-cleaning">Deep Cleaning</a></li><li><a href="/boat-cleaning">Boat Cleaning</a></li><li><a href="/commercial-cleaning">Commercial Cleaning</a></li><li><a href="/seasonal-cleaning">Seasonal Cleaning</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="/airbnb-cleaning">Airbnb Cleaning</a></li>
+        <li><a href="/vacation-home-cleaning">Vacation Home Cleaning</a></li>
+        <li><a href="/residential-cleaning">Residential Cleaning</a></li>
+        <li><a href="/deep-cleaning">Deep Cleaning</a></li>
+        <li><a href="/move-in-move-out-cleaning-cape-cod">Move-In / Move-Out</a></li>
+        <li><a href="/post-construction-cleaning-cape-cod">Post-Construction</a></li>
+        <li><a href="/recurring-house-cleaning-cape-cod">Recurring Cleaning</a></li>
+        <li><a href="/holiday-cleaning">Holiday Cleaning</a></li>
+        <li><a href="/boat-cleaning">Boat Cleaning</a></li>
+        <li><a href="/commercial-cleaning">Commercial Cleaning</a></li>
+        <li><a href="/seasonal-cleaning">Seasonal Cleaning</a></li>
+      </ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a href="#about">About Adriana</a></li><li><a href="#testimonials">Client Reviews</a></li><li><a href="/blog">Blog</a></li><li><a href="#contact">Get a Quote</a></li></ul></div>
         <div class="footer-col"><h5>Areas Served</h5><ul><li><a href="#contact">North Falmouth</a></li><li><a href="#contact">Falmouth, MA</a></li><li><a href="#contact">Barnstable</a></li><li><a href="#contact">Sandwich</a></li><li><a href="#contact">All of Cape Cod</a></li></ul></div>
       </div>
@@ -1401,6 +1423,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.querySelectorAll('.faq-question.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('open'); });
       if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
     }
+
+    // UTM capture on page load
+    (function() {
+      var p = new URLSearchParams(window.location.search);
+      ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k) {
+        var el = document.getElementById('f_' + k);
+        if (el) el.value = p.get(k) || sessionStorage.getItem(k) || '';
+        if (p.get(k)) sessionStorage.setItem(k, p.get(k));
+      });
+      var ref = document.getElementById('f_referrer');
+      if (ref) ref.value = document.referrer || 'direct';
+    })();
 
     // FORM, Web3Forms
     async function handleSubmit(e) {
