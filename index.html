@@ -1451,7 +1451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const data = Object.fromEntries(new FormData(form));
       // Google Sheets lead log (fire-and-forget; never blocks the email)
       try {
-        fetch('https://script.google.com/macros/s/AKfycbxtdVJpz7Zj-hsdRtrzJlhgK4TBK-GKZ4Q4mCM_jDOWCG5adO25KmoLA3kClSMb_PaI/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbyJrntBrXNCAqw-eCj0qnIkv9BWXJQxOHxJz70_1Fa5gemeTWDfkKNHDiCiNc_6or9J/exec', {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(data),
