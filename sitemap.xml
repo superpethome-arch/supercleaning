@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
@@ -338,4 +338,29 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.supercleaningcc.com/blog/how-long-does-house-cleaning-take</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.supercleaningcc.com/how-long-does-house-cleaning-take-1.jpg</image:loc>
+      <image:title>Super Cleaning pro mopping a polished hardwood floor in a Cape Cod living room</image:title>
+      <image:caption>Super Cleaning pro mopping a polished hardwood floor in a Cape Cod living room</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.supercleaningcc.com/blog/how-much-should-home-cleaning-cost</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.supercleaningcc.com/how-much-should-home-cleaning-cost-1.jpg</image:loc>
+      <image:title>Super Cleaning branded SUV parked outside a Cape Cod vacation home</image:title>
+      <image:caption>Super Cleaning branded SUV parked outside a Cape Cod vacation home</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
